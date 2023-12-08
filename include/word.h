@@ -1,5 +1,5 @@
-#ifndef __WORDS_H__
-#define __WORDS_H__
+#ifndef __WORD_H__
+#define __WORD_H__
 
 #include <stdint.h>
 #include <stdio.h>
