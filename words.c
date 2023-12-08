@@ -20,7 +20,14 @@ static inline size_t w_push_node_single(char8_t key) {
     w_nodes = realloc(w_nodes, w_node_limit * sizeof(w_node_t));
   }
   
-  w_nodes[w_node_count++] = (w_node_t) {key, 0, 0, 0};
+  w_nodes[w_node_count++] = (w_node_t) {
+    .key = key,
+    .index = 0,
+    
+    .sibling = 0,
+    .child = 0,
+  };
+  
   return w_node_count;
 }
 
@@ -37,16 +44,14 @@ void w_push_node(const char8_t *word, size_t index) {
       
       if (*word) {
         if (!w_nodes[node].child) {
-          size_t child = w_push_node_single(*word);
-          w_nodes[node].child = child;
+          w_nodes[node].child = w_push_node_single(*word);
         }
         
         node = w_nodes[node].child - 1;
       }
     } else {
       if (!w_nodes[node].sibling) {
-        size_t sibling = w_push_node_single(*word);
-        w_nodes[node].sibling = sibling;
+        w_nodes[node].sibling = w_push_node_single(*word);
       }
       
       node = w_nodes[node].sibling - 1;
@@ -58,25 +63,34 @@ void w_push_node(const char8_t *word, size_t index) {
     return;
   }
   
-  /* TODO */
+  size_t tail = w_nodes[node].index - 1;
+  
+  while (w_words[tail].next_word) {
+    tail = w_words[tail].next_word - 1;
+  }
+  
+  w_words[tail].next_word = index;
 }
 
-size_t w_push_word(char8_t type, const char8_t *word, const char8_t *root) {
+size_t w_push_word(const char8_t *word, const char8_t *root,
+    const char8_t *flags, size_t frequency) {
   if (w_word_count == w_word_limit) {
     w_word_limit += 262144;
     w_words = realloc(w_words, w_word_limit * sizeof(w_word_t));
   }
   
-  w_words[w_word_count++] = (w_word_t) {
-    .type = type,
+  w_words[w_word_count] = (w_word_t) {
+    .flags = {0},
+    .frequency = frequency,
     
-    .next = 0,
+    .next_word = 0,
     
     .word_blob = w_push_blob(word),
     .root_blob = w_push_blob(root),
   };
   
-  return w_word_count;
+  strncpy(w_words[w_word_count].flags, flags, 7);
+  return ++w_word_count;
 }
 
 size_t w_push_blob(const char8_t *blob) {
@@ -190,7 +204,58 @@ bool w_save(const char *path) {
   return true;
 }
 
-size_t w_next(w_state_t *state) {
-  /* TODO */
+size_t w_read(w_state_t *state, char8_t key) {
+  while (state->unread_head) {
+    size_t unread_head = state->unread_head;
+    state->unread_head = 0;
+    
+    size_t index = w_read(state, state->unread[--unread_head]);
+    state->unread_head = unread_head;
+    
+    if (index) {
+      memmove(state->unread + 1, state->unread, state->unread_head * sizeof(size_t));
+      state->unread[0] = key;
+      
+      state->unread_head++;
+      return index;
+    }
+  }
+  
+  while (true) {
+    if (w_nodes[state->index].key == key) {
+      if (!w_nodes[state->index].child) {
+        size_t index = w_nodes[state->index].index;
+        state->stack_head = state->index = 0;
+        
+        return index;
+      }
+      
+      state->stack[state->stack_head++] = state->index;
+      state->index = w_nodes[state->index].child - 1;
+      
+      return 0;
+    }
+    
+    if (!w_nodes[state->index].sibling) {
+      break;
+    }
+    
+    state->index = w_nodes[state->index].sibling - 1;
+  }
+  
+  for (size_t i = state->stack_head - 1; i < state->stack_head; i--) {
+    if (w_nodes[state->stack[i]].index) {
+      state->unread[state->unread_head++] = key;
+      
+      for (size_t j = state->stack_head - 1; j > i; j--) {
+        state->unread[state->unread_head++] = w_nodes[state->stack[j]].key;
+      }
+      
+      state->stack_head = state->index = 0;
+      return w_nodes[state->stack[i]].index;
+    }
+  }
+  
+  state->stack_head = state->index = 0;
   return 0;
 }

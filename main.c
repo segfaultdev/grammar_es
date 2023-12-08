@@ -1,5 +1,6 @@
 #include <words.h>
 
+#include <inttypes.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
@@ -51,11 +52,16 @@ int main(int argc, char const *argv[]) {
         continue;
       }
       
-      char8_t *word  = strtok(buffer, u8"\t\n");
-      char8_t *root  = strtok(buffer, u8"\t\n");
-      char8_t *flags = strtok(buffer, u8"\t\n");
+      char8_t *word      = strtok(buffer, u8"\t\n");
+      char8_t *root      = strtok(NULL, u8"\t\n");
+      char8_t *flags     = strtok(NULL, u8"\t\n");
+      size_t   frequency = strtoumax(strtok(NULL, u8"\t\n"), NULL, 0);
       
-      size_t index = w_push_word(flags[0], word, root);
+      if (flags[0] == 'K') {
+        word = root;
+      }
+      
+      size_t index = w_push_word(word, root, flags, frequency);
       w_push_node(word, index);
     }
     
@@ -90,30 +96,33 @@ int main(int argc, char const *argv[]) {
     }
     
     w_state_t state = (w_state_t) {
-      .file = (strcmp(argv[2], "-") ? fopen(argv[2], "r") : stdin),
+      .stack_head = 0,
+      .unread_head = 0,
       
-      .stack = {0},
-      .head = 0,
+      .index = 0,
     };
     
-    if (!state.file) {
+    FILE *file = stdin;
+    
+    if (strcmp(argv[2], "-") && (file = fopen(argv[2], "r"))) {
       errorf("Could not open '%s'.\n", argv[2]);
       return 1;
     }
     
-    /* TODO: Do something useful with the produced words. */
-    
     while (true) {
-      size_t word = w_next(&state);
+      int     key   = fgetc(file);
+      char8_t key_8 = (key == EOF) ? u8'\0' : (char8_t)(key);
       
-      if (!word) {
-        break;
+      size_t index = w_read(&state, key_8);
+      
+      if (index) {
+        printf("(%u => '%s')\n", index, w_blobs + w_words[index - 1].word_blob);
       }
       
-      printf("(%u)", word);
+      if (key == EOF) {
+        break;
+      }
     }
-    
-    printf("\n");
   }
   
   return 0;
