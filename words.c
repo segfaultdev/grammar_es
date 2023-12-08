@@ -221,13 +221,13 @@ size_t w_read(w_state_t *state, char8_t key) {
     }
   }
   
-  while (true) {
+  size_t index = 0;
+  
+  while (state->index < w_node_count) {
     if (w_nodes[state->index].key == key) {
       if (!w_nodes[state->index].child) {
-        size_t index = w_nodes[state->index].index;
-        state->stack_head = state->index = 0;
-        
-        return index;
+        index = w_nodes[state->index].index;
+        break;
       }
       
       state->stack[state->stack_head++] = state->index;
@@ -236,14 +236,10 @@ size_t w_read(w_state_t *state, char8_t key) {
       return 0;
     }
     
-    if (!w_nodes[state->index].sibling) {
-      break;
-    }
-    
     state->index = w_nodes[state->index].sibling - 1;
   }
   
-  for (size_t i = state->stack_head - 1; i < state->stack_head; i--) {
+  for (size_t i = state->stack_head - 1; !index && i < state->stack_head; i--) {
     if (w_nodes[state->stack[i]].index) {
       state->unread[state->unread_head++] = key;
       
@@ -251,11 +247,10 @@ size_t w_read(w_state_t *state, char8_t key) {
         state->unread[state->unread_head++] = w_nodes[state->stack[j]].key;
       }
       
-      state->stack_head = state->index = 0;
-      return w_nodes[state->stack[i]].index;
+      index = w_nodes[state->stack[i]].index;
     }
   }
   
   state->stack_head = state->index = 0;
-  return 0;
+  return index;
 }
