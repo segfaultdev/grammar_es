@@ -1,0 +1,1375 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{indentfirst}
+% Added by lyx2lyx
+\usepackage[natbib=true,bibstyle=apa,citestyle=numeric]{biblatex}
+% Added by lyx2lyx
+\addbibresource{paper.bib}
+\end_preamble
+\use_default_options true
+\begin_modules
+fix-cm
+logicalmkup
+\end_modules
+\begin_local_layout
+### Inserted by lyx2lyx (biblatex emulation) ###
+Provides natbib 1
+### End of insertion by lyx2lyx (biblatex emulation) ###
+\end_local_layout
+\maintain_unincluded_children false
+\language spanish
+\language_package default
+\inputencoding default
+\fontencoding global
+\font_roman "cmr" "Serif"
+\font_sans "cmss" "default"
+\font_typewriter "cmtt" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing other 1.6
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 3
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.54cm
+\topmargin 2.54cm
+\rightmargin 2.54cm
+\bottommargin 2.54cm
+\secnumdepth 5
+\tocdepth 5
+\paragraph_separation indent
+\paragraph_indentation 1cm
+\quotes_language french
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\bullet 1 0 9 -1
+\bullet 2 0 7 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Modelo determinista para el análisis sintáctico: una perspectiva algorítmica
+ y computacional de la lingüística
+\end_layout
+
+\begin_layout Author
+Julio Meroño Sáez
+\end_layout
+
+\begin_layout Abstract
+(English version)
+\end_layout
+
+\begin_layout Abstract
+(Versión en español)
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Prólogo
+\end_layout
+
+\begin_layout Section
+Introducción
+\end_layout
+
+\begin_layout Standard
+El español o castellano es una lengua iberorromance y es la lengua nativa
+ de más de 450 millones de hablantes en el mundo, a lo que se le suman los
+ 75 millones de hablantes no nativos alrededor del planeta.
+ Esto la sitúa como la cuarta lengua más hablada globalmente, detrás del
+ inglés, el chino mandarín y el hindi.
+ Es por ello que la existencia de una lingüística estandarizada es fundamental,
+ al permitir la comunicación internacional sin cabida a ningún tipo de ambigüeda
+d y al mantener la integridad de la lengua.
+ La Asociación de Academias de la Lengua Española, junto a sus correspondientes
+ academias nacionales (entre ellas, la Real Academia Española), son las
+ encargadas de dicho cometido, proporcionando una estandarización de la
+ gramática, morfología, léxico y fonética del español alrededor del mundo
+ hispanohablante.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sin duda, la gramática es tan fundamental como las otras ramas de estudio
+ de la lingüística.
+ Esta es la encargada de estudiar la organización y la función de las palabras
+ dentro de una oración, junto a la agrupación de palabras en unidades mayores
+ con significado y función, denominadas sintagmas.
+ A su vez, dichos sintagmas se organizan por categorías sintagmáticas que
+ engloban y marcan su función general.
+ El estudio y el estandarizado de la gramática en el español se remonta
+ a finales del siglo XV, con autores como Antonio de Nebrija, llegando y
+ continuando hasta la actualidad con teorías y propuestas transversales
+ a la mayoría de lenguas, como las propuestas por Noam Chomsky, o trabajos
+ más enfocados en el español.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tradicionalmente, y aún en épocas recientes, se ha realizado un estudio
+ sintáctico más específico para cada categoría sintagmática, donde los sintagmas
+ (o grupos, como se hacen llamar en ciertos modelos) poseen estructuras
+ fundamentalmente distintas entre tipos, y donde se da lugar a numerosos
+ casos límite a tener en cuenta.
+ Aún así, dicho análisis ha resultado ser considerablemente más efectivo
+ y simple a la hora de su uso superficial por lingüistas procedentes de
+ otras ramas, o en el ámbito educativo como medio de enseñanza.
+ Sin embargo, desde finales del siglo anterior y gracias a la teoría estándar
+ propuesta por Noam Chomsky, se ha dado lugar a otro enfoque distinto a
+ la gramática, denominado gramática generativa.
+ En la mayoría de teorías y modelos asociados con dicha gramática, se formula
+ que todas las agrupaciones a las que se les denomina sintagmas comparten
+ una estructura fundamental, que aun pudiendo variar en el tipo de unidades
+ y tipos de sintagmas agrupados para formarlo, siempre se estructuran de
+ la misma manera, sin casi ninguna cabida a variación.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El estudio de la gramática en el español, especialmente de la sintaxis,
+ ha resultado en el creciente interés por el uso de las nuevas tecnologías
+ y de la capacidad computacional de este siglo para el análisis sintáctico
+ de frases, sintagmas individuales y oraciones.
+ Por desgracia, el uso en su mayoría de la gramática tradicional para la
+ creación de modelos y algoritmos que cumplan dicha tarea dificulta considerable
+mente la detección y el correcto análisis de ciertos casos especiales o
+ límite que se pueden dar, o imposibilita casi por completo el proporcionamiento
+ de más información en cuanto a la función que realizan ciertos sintagmas
+ dentro de agrupaciones mayores, factor que la gramática tradicional no
+ suele tener en cuenta.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Es por ello por lo que este trabajo de investigación propone un análisis
+ determinista en forma de modelo adaptado de la gramática del español, basándose
+ fundamentalmente en la gramática generativista aportada en la obra de Karen
+ Zagona, Sintaxis generativa del español [1], pero incluyendo modificaciones
+ tanto propias como de otros autores que permitan una mayor facilidad para
+ el procesado de oraciones mediante implementaciones computacionales de
+ dicho modelo.
+ Además, se pretende diseñar y llevar a cabo una implementación tipo del
+ modelo formulado previamente que sea capaz de poder utilizarse en ordenadores
+ convencionales sin requerir de un excesivo coste computacional, para su
+ posible y posterior publicación mediante una interfaz en línea y de acceso
+ libre para su uso público.
+\end_layout
+
+\begin_layout Section
+Justificación
+\end_layout
+
+\begin_layout Standard
+Son decenas de millones los estudiantes que se encuentran actualmente aprendiend
+o español en las escuelas.
+ En específico, contando únicamente los estudiantes extranjeros y no procedentes
+ de ningún país hispanohablante, se estima que el número se encuentra en
+ el orden de los 24 millones [2].
+ Entre toda la materia y contenidos aportados en la clase a dichos estudiantes
+ durante sus horas lectivas, una gran y significativa parte consiste en
+ el estudio de la propia lengua.
+ Además, la utilización del estudio y análisis sintáctico mediante separación
+ en sintagmas o grupos encuadrados se ha vuelto a lo largo de los años el
+ estándar a nivel nacional y, en ciertos casos, internacional.
+ Aunque los estudios que lo afirmen son relativamente escasos, predominantemente
+ la experiencia ha demostrado a las instituciones que planifican las competencia
+s a tener en cuenta a la hora de enseñar en las aulas que el entendimiento
+ del funcionamiento de la lengua implica un mejor uso de esta, tanto social
+ y oral como formal y escrito, y es fundamental para la preservación del
+ español, razón junto a las anteriores por las que se muestra un interés
+ significativo en su enseñanza en los centros educativos a lo largo de todo
+ el territorio español.
+ Además, se ha de tener en cuenta la reciente y creciente adopción de esta
+ metodología en otros países de habla española, lo que implica una mayor
+ impulsión del conocimiento interno del funcionamiento de la sintaxis española.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Si bien, el uso de la gramática tradicional como herramienta didáctica se
+ remonta a, aproximadamente, el siglo anterior, la cantidad de material
+ de ejercicios para los estudiantes es particularmente escaso, especialmente
+ cuando se pretende comparar con otras materias donde no solo existe mucho
+ más material, sino que es posible su generación procedural y automática.
+ En principio, lo comentado no debería tener ninguna implicación negativa,
+ pues al tratarse de un estudio de la gramática española en forma de sintaxis
+ basada en teorías tradicionales, la generación de ejercicios resulta tan
+ simple como obtener, buscar o producir por la propia cuenta del profesorado
+ oraciones que se adapten al nivel de los estudiantes.
+ Sin embargo, se ha de considerar y tener en cuenta que, para comprobar
+ la correctitud y validez de las respuestas otorgadas por los estudiantes
+ a espera de ser evaluadas, resulta tedioso tener que realizar una comprobación
+ mental lenta y laboriosa de dichos resultados, que puede además dar lugar
+ a numerosos errores de comprobación, no solo beneficiosos sino también
+ perjudiciales en ciertos casos para el alumnado.
+ Por otro lado, desde el punto de vista estudiantil, la comprobación independien
+te de resultados es completamente imposible, pues se carece de un punto
+ de referencia objetivo para comparar, por lo que estos carecen de una forma
+ de poder practicar de manera efectiva e ilimitada, sin depender del continuo
+ trabajo del profesorado.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lo que diferencia principalmente a las personas de cualquiera de los dos
+ puntos de vista anteriores con los ordenadores y dispositivos electrónicos
+ es la capacidad de poder tomar decisiones aplicando el entendimiento horizontal
+, subjetivo y basado en la experiencia y no en reglas a aplicar.
+ Por lo tanto, la tarea de producir análisis sintácticos utilizables en
+ el ámbito de la creación de asistentes basados en la inteligencia artificial
+ se considera un tema popular y continuamente en desarrollo y debate en
+ investigaciones de las últimas décadas.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Este último caso nos lleva al ámbito judicial, donde se muestra una carencia
+ de estandarización intuitiva del significado de los textos legislativos,
+ los contratos y los acuerdos formales, dando lugar a que existan profesiones
+ cuyo único propósito sea el de garantizar la ausencia de vacíos legales
+ a la hora de producir dichos papeles.
+ Todo esto ocurre por una vaga especificación abierta a interpretaciones
+ de la gramática utilizada en este campo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La motivación de este trabajo de investigación es, entonces, aportar un
+ pequeño pero significante grano de arena a la base de lo que será el mundo
+ en los años y las décadas por venir, tanto en el ámbito de la educación,
+ como en el de la tecnología, como en el judicial, como en cualquier otro
+ que se pueda plantear (lenguaje matemático, diplomacia, etcétera).
+ Para ello, se plantean diversos objetivos escalonados que se formulan en
+ el apartado a continuación.
+\end_layout
+
+\begin_layout Section
+Objetivos del trabajo
+\end_layout
+
+\begin_layout Standard
+El objetivo principal de este trabajo de investigación es, en resumidas
+ cuentas, poder aportar un modelo descriptivo y determinista pero empírico
+ de la gramática del español, basándose en una agrupación de teorías y definicio
+nes de la gramática de autores anteriores y antecedentes, mezclado con un
+ enfoque propio matizado por la mentalidad computacional y matemática, que
+ pueda utilizarse como herramienta de formalización, educación y comprobación,
+ pero además como punto de partida para futuras investigaciones.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Por otro lado, este objetivo ya mencionado da lugar a ciertos enfoques alternati
+vos pero compatibles por los que llevar la investigación, en forma de objetivos
+ secundarios:
+\end_layout
+
+\begin_layout Enumerate
+Crear una herramienta de uso fácil e inmediato para el análisis de oraciones
+ y sintagmas en español, disponible de forma completamente gratuita al público,
+ para su uso por profesorado, estudiantes, políticos, diplomáticos, abogados,
+ etcétera.
+\end_layout
+
+\begin_layout Enumerate
+Aportar una simplificación general de las estructuras de árbol presentes
+ en la mayoría de corrientes presentes, principalmente del árbol bipartito
+ propuesto por las principales ramas de la gramática generativista, que
+ permita su uso de forma más eficaz a la hora de realizar análisis computacional
+es de la sintaxis del español, no solo como punto de apoyo para el anterior
+ objetivo sino también como base para modelos de asistencia mediante inteligenci
+a artificial, chatbots y cualquier tecnología similar.
+ 
+\begin_inset Note Comment
+status open
+
+\begin_layout Enumerate
+TODO: ¿Reescribir?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Agrupar los esfuerzos provenientes de las distintas corrientes lingüísticas
+ existentes para propulsar la gramática española en un trabajo recopilatorio
+ que, además, introduce ciertas variaciones partiendo de un enfoque más
+ tecnológico, algorítmico y modélico.
+ 
+\end_layout
+
+\begin_layout Part
+Modelo adaptado de la gramática española
+\end_layout
+
+\begin_layout Standard
+En esta parte del trabajo de investigación, se diseña y redacta un modelo
+ adaptado de la gramática del español, con la intención de su posterior
+ uso en la implementación del mismo mediante técnicas propias del ámbito
+ de la programación y la algoritmia.
+ Previamente a ello, sin embargo, se nombra la base a partir de la que se
+ construye el modelo, y se menciona en detalle la estructura, metodología
+ de diseño y paradigma utilizado para la creación del mismo.
+ 
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+¿Qué se hace en esta parte? Breve mención de las secciones.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Es de relevancia para el entendimiento del trabajo tener en cuenta que,
+ en la redacción del modelo, se parte de una base nula, posiblemente reasignando
+ definiciones incompatibles a cierta terminología en uso con el fin de simplific
+ar la producción y aumentar la claridad de este.
+ Además, las propuestas de clasificación, análisis y estructurado pueden
+ poseer disparidades significativas con las procedentes de las corrientes
+ gramaticales actuales, incluso, en definiciones generalmente aceptadas
+ previamente.
+ Esto es debido, por otro lado, a los intentos de acercar el modelo a una
+ redacción lo suficientemente formal en el sentido algorítmico como para
+ su utilización sin posible lugar a dudas en las implementaciones.
+ 
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+Lenguaje utilizado y disparidades con la gramática actual.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Por último, por limitaciones de tiempo, de personal y de antecedentes previos
+ a este trabajo de investigación, resulta considerablemente dificil, incluso
+ imposible en la práctica, tratar de definir la totalidad de la gramática
+ española en el mismo, por lo que se ha decidido reducir la lengua en cuestión
+ a un subconjunto del español.
+ Con esto se pretende decir, adicionalmente, que cualquier enunciado válido
+ en esta versión reducida del español es, también, un enunciado válido en
+ el español real.
+ Esta reducción elimina ciertas estructuras complejas, como la gran mayoría
+ de construcciones oracionales o la yuxtaposición de cualquier tipo.
+ También se descartan ciertas variaciones internas dentro las estructuras
+ sintagmáticas, limitándolas a formas y ordenamientos fácilmente procesables
+ y comunes en el español, mencionados posteriormente en el trabajo.
+ 
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+Subconjunto del español en cuestión, omisión de construcciones y estructuras
+ complejas, etcétera.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Fuentes e investigaciones previas
+\end_layout
+
+\begin_layout Standard
+El modelo presentado y definido a lo largo de las siguientes secciones obtiene
+ su inspiración y punto de partida en diversas corrientes gramaticales y
+ lingüísticas existentes en el momento.
+ Sin embargo, dichas corrientes carecen del rigor matemático o algorítmico
+ necesario para la realización de implementaciones formalmente verificables.
+ De esta manera, el marco bibliográfico constituido por trabajos de relevancia
+ para el diseño del modelo se encuentra severamente limitado.
+ Esto conlleva, como se ha mencionado previamente, la necesidad de simplificar
+ y reducir la gramática tratada en el modelo a un conjunto reducido y delimitado
+ por lo fácilmente deducible y extrapolable a definiciones formales de lo
+ explicado en las fuentes bibliográficas e investigaciones previas de este
+ trabajo de investigación.
+ Sin embargo, esto implica que las fuentes en uso juegan un papel meramente
+ inspiracional o de guía en las definiciones aportadas, por lo que se ruega
+ discreción a la hora de su interpretación en las secciones posteriores.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A continuación, se mencionan brevemente las fuentes que se han utilizado
+ para la construcción y el diseño del modelo:
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Corpus AnCora.
+
+\shape default
+ 
+\begin_inset CommandInset citation
+LatexCommand citealt
+key "antonia_marti_ancora_2007"
+
+\end_inset
+
+ Este corpus español-catalán posee diversas anotaciones morfológicas, sintáctica
+s y semánticas de significativa utilidad para este trabajo de investigación.
+ En especial, los dos lexicones extraídos del mismo, AnCora-Verb y AnCora-Nom,
+ forman la base del procesado semántico efectuado en la implementación del
+ modelo.
+ Las agrupaciones en argumentos de los roles semánticos presentes en el
+ modelo se realizan con la intención de simplificar la tarea de llevar su
+ análisis a la práctica, alineándolas con las presentes en estos lexicones.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Nueva gramática de la lengua española.
+
+\shape default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "asociacion_de_academias_de_la_lengua_espanola_asale_real_academia_espanola_rae_nueva_2009"
+
+\end_inset
+
+ Desde su publicación en 2009, esta obra académica ha servido como actualización
+ de la gramática normalizada por las mismas entidades en la primera mitad
+ del siglo anterior.
+ En este trabajo de investigación, la gramática procedente de la misma ha
+ constituido la base para gran parte de la terminología y definiciones en
+ uso y la clasificación de elementos, especialmente en los apartados más
+ relacionados con la morfología y la enumeración de rasgos gramaticales.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Corpus del español del siglo XXI.
+
+\shape default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "real_academia_espanola_rae_corpus_2023"
+
+\end_inset
+
+ Las tablas de frecuencias de este corpus han sido de considerable utilidad
+ para la formación de la base de datos de elementos gramaticales en uso
+ en la posterior implementación, además de proporcionar un análisis de rasgos
+ gramaticales significativamente exhaustivo, razón por la que esta fuente
+ ha sido crucial para el trabajo de investigación.
+ Es por ello por lo que, para el diseño del modelo, se ha tomado la leyenda
+ de rasgos gramaticales proporcionados en el análisis como punto de partida
+ para su nombramiento y clasificación.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Sintaxis generativa del español.
+
+\shape default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zagona_sintaxis_2006"
+
+\end_inset
+
+ En este libro, se proporciona una visión global de la sintaxis del español
+ desde un punto de vista basado en la gramática generativista.
+ De esta visión surge gran parte de las estructuras de las cláusulas y los
+ sintagmas tratadas en este trabajo de investigación, además de, en general,
+ servir como inspiración movida por las corrientes generativistas para la
+ planificación y el diseño de ciertas secciones del modelo, tanto en los
+ apartados enfocados en la morfología como en los que tratan principalmente
+ la sintaxis del subconjunto del español en cuestión.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+TODO: Añadir más fuentes aquí.
+ Si se llegan a utilizar más, claro.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Estructura y visión del modelo
+\end_layout
+
+\begin_layout Standard
+Dentro del modelo redactado a continuación, se proporciona un enfoque mayoritari
+amente funcional y empírico, evitando comprometer la simplicidad del modelo
+ que se perdería al pretender tratar temas como el origen natural de ciertas
+ estructuras.
+ Por ello, se proporcionan declaraciones que repliquen las construcciones
+ naturales de la lengua con la mayor precisión posible dentro de los límites
+ prácticos del trabajo.
+ 
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+Enfoque más funcional, o generativista, o lo que sea, hablar de eso aquí.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La estructura del mismo consiste en tres niveles fundamentales, ordenados
+ según su dependencia en los niveles anteriores y según el grado de abstracción
+ presente en cada uno de ellos.
+ De esta manera, se comienza tratando el nivel léxico-morfológico, donde
+ se trata la base léxica de la que se parte, sus rasgos gramaticales y la
+ clasificación de estos.
+ A continuación, se menciona el nivel sintáctico, en el que se explican
+ las distintas estructuras válidas para la agrupación de lexías en enunciados
+ o subdivisiones de los mismos.
+ Por último, se describe el nivel semántico, cuya función es la de extraer
+ y procesar el significado de las estructuras formadas mediante la asignación
+ de roles.
+ 
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+División entre nivel léxico-morfológico, nivel sintáctico y nivel semántico.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+De cualquier manera que se plantease el trabajo, sin embargo, siempre sería
+ necesario partir de una base de conocimientos previos no tratados en el
+ mismo, por lo que, durante la creación del modelo, ciertos apartados han
+ sido omitidos por cuestiones de limitaciones o de conveniencia.
+ Específicamente, dos casos son inmediatamente perceptibles y de relevancia:
+ 
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+Omisión de apartados como la formación y flexión de palabras en morfología,
+ o la procedencia de los roles en semántica.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+El nivel léxico-morfológico presenta un vacío de contenido en cuanto al
+ origen, la formación y la flexión de elementos gramaticales, pues, al partir
+ del análisis exhaustivo de elementos previamente realizado por la Real
+ Academia Española, resulta totalmente innecesario definir el proceso a
+ llevar a cabo para efectuar dicho análisis.
+ Así, se ignora en el trabajo de investigación la relación existente entre
+ la organización de los morfemas en los elementos y los rasgos gramaticales
+ que surgen como producto de esta organización.
+\end_layout
+
+\begin_layout Enumerate
+El nivel semántico utiliza una agrupación de roles en argumentos que, aun
+ lógica y válida a la vista, resulta aparentemente arbitraria en cuanto
+ a su selección.
+ Dicha agrupación proviene, sin embargo, de un intento de compatibilizar
+ los argumentos definidos con los presentes en los lexicones procedentes
+ del corpus 
+\shape italic
+AnCora
+\shape default
+, posteriormente utilizados en la implementación de este nivel del modelo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Por último, a lo largo de toda la redacción que abarca el modelo a continuación,
+ se utiliza en las secciones una notación específica para definir ciertos
+ apartados o estructuras formalmente.
+ Para evitar cualquier tipo de confusión, y definirla en su totalidad en
+ los casos donde esta difiera de la norma, se mostrarán ejemplos y explicaciones
+ previas a su utilización en el trabajo.
+\end_layout
+
+\begin_layout Section
+Nivel léxico-morfológico
+\end_layout
+
+\begin_layout Standard
+El nivel léxico-morfológico es el primer nivel a tratar en el modelo, pues
+ trata la base léxica sobre la que se contruyen, posteriormente, las estructuras
+ internas de los enunciados.
+ Además, se describen todos los posibles rasgos de las unidades gramaticales,
+ con el fin de poder utilizarlos para hacer posible su análisis en el nivel
+ sintáctico y en el nivel semántico.
+ Para ello, se introduce la lexía como unidad elemental sobre la que construir
+ el resto del modelo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La lexía es un elemento gramatical cuyas partes presentan un elevado índice
+ de inseparabilidad morfológica o forman una función distinta, no necesariamente
+ presentando cierto valor semántico, que cualquier subconjunto de dichas
+ partes.
+ Las lexías engloban términos más convencionales como la palabra y les aporta
+ una definición menos problemática, pero no se limitan únicamente a estos.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Según su estructura morfológica y visual, las lexías se pueden clasificar
+ de la siguiente manera:
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Lexías simples.
+
+\shape default
+ Constan de un conjunto de morfemas carente de espaciado o separación simbólica
+ alguna.
+ Se incluyen aquí tanto formas simples como compuestas de las palabras,
+ a diferencia de la clasificación convencional de lexía, pues permite un
+ procesado más simple de las mismas.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Lexías complejas.
+
+\shape default
+ También denominadas como locuciones, se componen de varios morfemas donde
+ sí se presenta una separación mediante espacios o símbolos.
+ Cada isla de morfemas se podría considerar equivalente a una lexía simple,
+ sin embargo, la totalidad de la lexía aporta una función y un valor semántico
+ distintos a cada una de las lexías simples discernibles en su interior,
+ o cualquier agrupación de estas.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Lexías textuales.
+
+\shape default
+ Los nombres propios, los términos numéricos, las expresiones hechas, las
+ citaciones y cualquier término insondable por las herramientas del ámbito
+ gramatical se consideran lexías textuales, pues difieren de las lexías
+ simples y las lexías complejas en que su significado proviene de una asignación
+ artifical del mismo, de un contexto externo al entorno o de una interpretación
+ poética de una o más lexías de otra clase.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Símbolos.
+
+\shape default
+ Estos son constituidos por cualquier marcación indivisible pero estrictamente
+ individual con una función exclusivamente gramatical.
+ Sus usos incluyen, pero no se limitan a, la delimitación o la enumeración
+ de elementos gramaticales, y no constan en ningún alfabeto.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Por otro lado, según su función y la presencia de valor semántico, se pueden
+ clasificar como se presenta a continuación, siendo esta la clasificación
+ de mayor utilidad a lo largo del modelo:
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Lexías semánticas.
+ 
+\shape default
+Se diferencian al poseer un valor semántico y al constituir casi la totalidad
+ del repertorio léxico.
+ Los adjetivos, los adverbios, los sustantivos y los verbos son los cuatro
+ tipos de lexías semánticas.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Lexías determinantes.
+ 
+\shape default
+Tienen como función la de concretar o determinar lexías, tornando conceptos
+ en referencias.
+ Además, pueden aportar rasgos gramaticales adicionales a dichas lexías,
+ o reforzar los rasgos ya presentes en ellas.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Lexías gramaticales.
+ 
+\shape default
+Estas cohesionan diversas lexías entre sí, formando jerarquías y enumeraciones,
+ o sirven para cambiar la función de otras lexías.
+ Se incluyen aquí las conjunciones, las preposiciones y los símbolos.
+\end_layout
+
+\begin_layout Subsection
+Rasgos gramaticales
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+Fecha límite: 18 de enero
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Los rasgos gramaticales son propiedades inherentes de las lexías que pueden
+ tomar valores cuantizados y limitados que se encuentran definidos según
+ y para cada rasgo presente.
+ Su presencia se encuentra mayoritariamente condicionada por la clase de
+ lexía en cuestión y, en ciertos casos, por la subclase de la lexía.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Formalmente y para su nombramiento, se utiliza la siguiente nomenglatura:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+hola
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Las lexías semánticas
+\end_layout
+
+\begin_layout Standard
+Adjetivos
+\end_layout
+
+\begin_layout Standard
+Adverbios
+\end_layout
+
+\begin_layout Standard
+Sustantivos
+\end_layout
+
+\begin_layout Standard
+Verbos
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+Fecha límite: 20 de enero
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Las lexías determinantes
+\end_layout
+
+\begin_layout Standard
+Artículos
+\end_layout
+
+\begin_layout Standard
+Cuantificadores
+\end_layout
+
+\begin_layout Standard
+Demostrativos
+\end_layout
+
+\begin_layout Standard
+Interrogativos
+\end_layout
+
+\begin_layout Standard
+Numerales
+\end_layout
+
+\begin_layout Standard
+Posesivos
+\end_layout
+
+\begin_layout Standard
+Pronombres personales
+\end_layout
+
+\begin_layout Standard
+Relativos
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+Fecha límite: 22 de enero
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Las lexías gramaticales
+\end_layout
+
+\begin_layout Standard
+Conjunciones
+\end_layout
+
+\begin_layout Standard
+Preposiciones
+\end_layout
+
+\begin_layout Standard
+Símbolos
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+Fecha límite: 23 de enero
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Nivel sintáctico
+\end_layout
+
+\begin_layout Subsection
+La enumeración
+\end_layout
+
+\begin_layout Subsection
+La cláusula
+\end_layout
+
+\begin_layout Subsection
+El sintagma
+\end_layout
+
+\begin_layout Standard
+El sintagma adjetival
+\end_layout
+
+\begin_layout Standard
+El sintagma adverbial
+\end_layout
+
+\begin_layout Standard
+El sintagma nominal
+\end_layout
+
+\begin_layout Standard
+El sintagma verbal
+\end_layout
+
+\begin_layout Section
+Nivel semántico
+\end_layout
+
+\begin_layout Part
+Implementación del modelo
+\end_layout
+
+\begin_layout Standard
+aaa pero AAA, asi que ªªª
+\end_layout
+
+\begin_layout Section
+Accesibilidad al público
+\end_layout
+
+\begin_layout Section
+Evaluación del modelo
+\end_layout
+
+\begin_layout Section
+Conclusiones
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+printbibliography
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "paper"
+options "bibtotoc,plain"
+
+\end_inset
+
+\end_layout
+
+\end_inset
+
+
+
+
+\end_layout
+
+\end_body
+\end_document

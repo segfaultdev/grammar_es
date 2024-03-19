@@ -1,4 +1,4 @@
-#include <words.h>
+#include <word.h>
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -73,15 +73,21 @@ void w_push_node(const char8_t *word, size_t index) {
 }
 
 size_t w_push_word(const char8_t *word, const char8_t *root,
-    const char8_t *flags, size_t frequency) {
+    const char8_t *flags, float frequency) {
   if (w_word_count == w_word_limit) {
     w_word_limit += 262144;
     w_words = realloc(w_words, w_word_limit * sizeof(w_word_t));
   }
   
+  const uint16_t endian_test = 0xAA55;
+  uint8_t bytes[6];
+  
+  memcpy(bytes, &frequency, 4);
+  memcpy(bytes + 4, &endian_test, 2);
+  
   w_words[w_word_count] = (w_word_t) {
-    .flags = {0},
-    .frequency = frequency,
+    .flags = {u8'\0'},
+    .frequency = *((uint16_t *)(bytes) + (bytes[4] == 0x55)),
     
     .next_word = 0,
     

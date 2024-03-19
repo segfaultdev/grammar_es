@@ -5,6 +5,9 @@
 #include <stdio.h>
 #include <uchar.h>
 
+/* Old size: 239517030 bytes. */
+/* New size: 156416232 bytes. */
+
 #define W_MAGIC       0xB2C14970
 #define W_STACK_LIMIT 256
 
@@ -37,15 +40,22 @@ struct w_node_t {
   uint32_t key:   8;
   uint32_t index: 24;
   
-  uint32_t sibling, child;
+  uint32_t sibling: 24;
+  uint32_t child:   24;
 } __attribute__((packed));
 
 struct w_word_t {
-  char8_t flags[8];
-  uint32_t frequency;
+  /*  Notes on custom flags:
+      - N---*--: [p]ersona / [l]ugar / [-]
+  */
   
-  uint32_t next_word;
-  uint32_t word_blob, root_blob;
+  char8_t flags[7];
+  uint16_t frequency; /* Encoded as a bfloat16 value. */
+  
+  uint32_t next_word: 22;
+  
+  uint32_t word_blob: 29;
+  uint32_t root_blob: 29;
 } __attribute__((packed));
 
 extern w_node_t *w_nodes;
@@ -59,7 +69,7 @@ extern size_t w_blob_bytes, w_blob_limit;
 
 void   w_push_node(const char8_t *word, size_t index);
 size_t w_push_word(const char8_t *word, const char8_t *root,
-    const char8_t *flags, size_t frequency);
+    const char8_t *flags, float frequency);
 size_t w_push_blob(const char8_t *blob);
 
 bool w_load(const char *path);

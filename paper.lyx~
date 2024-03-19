@@ -1,0 +1,6123 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{fourier}
+\usepackage{indentfirst}
+\usepackage[none]{hyphenat}
+
+\sloppy
+
+\captionsetup[figure]{font=small,labelfont=small}
+\DeclareMathSizes{8}{8}{6}{4}
+\end_preamble
+\use_default_options true
+\begin_modules
+fix-cm
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\language spanish
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman "cmr" "Serif"
+\font_sans "cmss" "default"
+\font_typewriter "cmtt" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures false
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command bibtex
+\index_command default
+\float_placement H
+\paperfontsize 12
+\spacing other 1.6
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 3
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style apacite
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 5
+\tocdepth 5
+\paragraph_separation indent
+\paragraph_indentation 1cm
+\is_math_indent 1
+\math_indentation 0bp
+\math_numbering_side default
+\quotes_style french
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle fancy
+\listings_params "lineskip={-1.5pt},keywordstyle={\color{blue}},commentstyle={\color{gray}}"
+\bullet 0 1 35 -1
+\bullet 1 1 29 -1
+\bullet 2 1 7 -1
+\bullet 3 1 4 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Modelo determinista para el análisis sintáctico: una perspectiva algorítmica
+ y computacional de la lingüística
+\end_layout
+
+\begin_layout Author
+Julio Meroño Sáez
+\end_layout
+
+\begin_layout Abstract
+Spanish is the fourth most spoken language across the globe, right behind
+ English, Mandarin and Hindi.
+ Thus, it is of high interest to have an accepted linguistic standardization,
+ something that has historically been carried on by numerous entities, and
+ that, nowadays, is done by the Asociación de Academias de la Lengua Española
+ (Association of Academies of the Spanish Language).
+ The works that have been published in this context, whose sole purpose
+ is the aforementioned standardization of the Spanish language, fail to
+ define with the required rigor the relations and hierarchies observed in
+ Spanish, being limited, instead, to providing criteria for their distinction
+ and classification.
+ Even if unnecessary in numerous other fields, such a standardization closes
+ the gap to achieving noteworthy developments in fields such as education,
+ legislation and the construction of artificial intelligence models.
+ Therefore, the main goal is to provide a model that contains these characterist
+ics which, additionally, is mathematically compatible with an implementation
+ to be done afterward as a computer program, with intentions to later provide
+ a means of access to the general public through a web interface.
+ To achieve such a goal, throughout this paper, the proposed model is split
+ into several inner levels and the algorithms, data structures and formats
+ in use are thoroughly explained.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+El español es la cuarta lengua más hablada globalmente, detrás del inglés,
+ el chino mandarín y el hindi.
+ Por ello, es fundamental que exista una estandarización lingüística, cometido
+ realizado por numerosas entidades a lo largo de la historia del español,
+ y actualmente llevado a cabo por la Asociación de Academias de la Lengua
+ Española.
+ Sin embargo, las obras publicadas y reconocidas cuyo propósito es esta
+ misma estandarización de la lengua no consiguen definir, con el nivel de
+ rigor suficiente, las relaciones y jerarquías que se observan en la lengua,
+ sino que se limitan a proporcionar criterios para su distinción y clasificación.
+ Aun innecesario para numerosos ámbitos, este rigor proporcionaría los medios
+ necesarios para alcanzar considerables avances en ámbitos como la educación,
+ la legislación y la construcción de inteligencias artificiales.
+ Es por ello por lo que se pretende conseguir un modelo de estas características
+, que, además, sea matemáticamente compatible con una posterior implementación
+ en forma de programa informático y disposición al público mediante una
+ interfaz en línea.
+ Para ello, en el trabajo de investigación, se disecciona el modelo adaptado
+ propuesto en niveles a lo largo de su construcción y, posteriormente, se
+ explican con detalle los algoritmos, estructuras de datos y formatos que
+ han sido de relevancia y utilidad.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Prólogo
+\end_layout
+
+\begin_layout Section
+Introducción
+\end_layout
+
+\begin_layout Standard
+El español o castellano es una lengua iberorromance y es la lengua nativa
+ de más de 450 millones de hablantes en el mundo, a lo que se le suman los
+ 75 millones de hablantes no nativos alrededor del planeta.
+ Esto la sitúa como la cuarta lengua más hablada globalmente, detrás del
+ inglés, el chino mandarín y el hindi.
+ Es por ello por lo que la existencia de una lingüística estandarizada es
+ fundamental, al permitir la comunicación internacional sin cabida a ningún
+ tipo de ambigüedad y al mantener la integridad de la lengua.
+ La Asociación de Academias de la Lengua Española, junto a sus correspondientes
+ academias nacionales (entre ellas, la Real Academia Española), son las
+ encargadas de dicho cometido, proporcionando una estandarización de la
+ gramática, morfología, léxico y fonética del español alrededor del mundo
+ hispanohablante.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sin duda, la gramática es tan fundamental como las otras ramas de estudio
+ de la lingüística.
+ Esta es la encargada de estudiar la organización y la función de las palabras
+ dentro de una oración, junto a la agrupación de palabras en unidades mayores
+ con significado y función, denominadas sintagmas.
+ A su vez, dichos sintagmas se organizan por categorías sintagmáticas que
+ engloban y marcan su función general.
+ El estudio y el estandarizado de la gramática en el español se remonta
+ a finales del siglo XV, con autores como Antonio de Nebrija, llegando y
+ continuando hasta la actualidad con teorías y propuestas transversales
+ a la mayoría de lenguas, como las propuestas por Noam Chomsky, o trabajos
+ más enfocados en el español.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tradicionalmente, y aún en épocas recientes, se ha realizado un estudio
+ sintáctico más específico para cada categoría sintagmática, donde los sintagmas
+ (o grupos, como se hacen llamar en ciertos modelos) poseen estructuras
+ fundamentalmente distintas entre tipos, y donde se da lugar a numerosos
+ casos límite a tener en cuenta.
+ Aún así, dicho análisis ha resultado ser considerablemente más efectivo
+ y simple a la hora de su uso superficial por lingüistas procedentes de
+ otras ramas, o en el ámbito educativo como medio de enseñanza.
+ Sin embargo, desde finales del siglo anterior y gracias a la teoría estándar
+ propuesta por Noam Chomsky, se ha dado lugar a otro enfoque distinto a
+ la gramática, denominado gramática generativa.
+ En la mayoría de teorías y modelos asociados con dicha gramática, se formula
+ que todas las agrupaciones a las que se les denomina sintagmas comparten
+ una estructura fundamental, que aun pudiendo variar en el tipo de unidades
+ y tipos de sintagmas agrupados para formarlo, siempre se estructuran de
+ la misma manera, sin casi ninguna cabida a variación.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El estudio de la gramática en el español, especialmente de la sintaxis,
+ ha resultado en el creciente interés por el uso de las nuevas tecnologías
+ y de la capacidad computacional de este siglo para el análisis sintáctico
+ de frases, sintagmas individuales y oraciones.
+ Por desgracia, el uso en su mayoría de la gramática tradicional para la
+ creación de modelos y algoritmos que cumplan dicha tarea dificulta considerable
+mente la detección y el correcto análisis de ciertos casos especiales o
+ límite que se pueden dar, o imposibilita casi por completo el proporcionamiento
+ de más información en cuanto a la función que realizan ciertos sintagmas
+ dentro de agrupaciones mayores, factor que la gramática tradicional no
+ suele tener en cuenta.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Es por ello por lo que este trabajo de investigación propone un análisis
+ determinista en forma de modelo adaptado de la gramática del español, basándose
+ fundamentalmente en la gramática generativista aportada en la obra Sintaxis
+ generativa del español 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zagona_sintaxis_2006"
+literal "false"
+
+\end_inset
+
+, pero incluyendo modificaciones tanto propias como de otros autores que
+ permitan una mayor facilidad para el procesado de oraciones mediante implementa
+ciones computacionales de dicho modelo.
+ Además, se pretende diseñar y llevar a cabo una implementación tipo del
+ modelo formulado previamente que sea capaz de poder utilizarse en ordenadores
+ convencionales sin requerir de un excesivo coste computacional, para su
+ posible y posterior publicación mediante una interfaz en línea y de acceso
+ libre para su uso público.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Justificación
+\end_layout
+
+\begin_layout Standard
+Son decenas de millones los estudiantes que se encuentran actualmente aprendiend
+o español en las escuelas.
+ En específico, contando únicamente los estudiantes extranjeros y no procedentes
+ de ningún país hispanohablante, se estima que el número se encuentra en
+ el orden de los 24 millones 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "cervantes_informe_2022"
+literal "false"
+
+\end_inset
+
+.
+ Entre toda la materia y contenidos aportados en la clase a dichos estudiantes
+ durante sus horas lectivas, una gran y significativa parte consiste en
+ el estudio de la propia lengua.
+ Además, la utilización del estudio y análisis sintáctico mediante separación
+ en sintagmas o grupos encuadrados se ha vuelto a lo largo de los años el
+ estándar a nivel nacional y, en ciertos casos, internacional.
+ Aunque los estudios que lo afirmen son relativamente escasos, predominantemente
+ la experiencia ha demostrado a las instituciones que planifican las competencia
+s a tener en cuenta a la hora de enseñar en las aulas que el entendimiento
+ del funcionamiento de la lengua implica un mejor uso de esta, tanto social
+ y oral como formal y escrito, y es fundamental para la preservación del
+ español, razón junto a las anteriores por las que se muestra un interés
+ significativo en su enseñanza en los centros educativos a lo largo de todo
+ el territorio español.
+ Además, se ha de tener en cuenta la reciente y creciente adopción de esta
+ metodología en otros países de habla española, lo que implica una mayor
+ impulsión del conocimiento interno del funcionamiento de la sintaxis española.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Si bien, el uso de la gramática tradicional como herramienta didáctica se
+ remonta a, aproximadamente, el siglo anterior, la cantidad de material
+ de ejercicios para los estudiantes es particularmente escaso, especialmente
+ cuando se pretende comparar con otras materias donde no solo existe mucho
+ más material, sino que es posible su generación procedural y automática.
+ En principio, lo comentado no debería tener ninguna implicación negativa,
+ pues al tratarse de un estudio de la gramática española en forma de sintaxis
+ basada en teorías tradicionales, la generación de ejercicios resulta tan
+ simple como obtener, buscar o producir por la propia cuenta del profesorado
+ oraciones que se adapten al nivel de los estudiantes.
+ Sin embargo, se ha de considerar y tener en cuenta que, para comprobar
+ la correctitud y validez de las respuestas otorgadas por los estudiantes
+ a espera de ser evaluadas, resulta tedioso tener que realizar una comprobación
+ mental lenta y laboriosa de dichos resultados, que puede además dar lugar
+ a numerosos errores de comprobación, no solo beneficiosos sino también
+ perjudiciales en ciertos casos para el alumnado.
+ Por otro lado, desde el punto de vista estudiantil, la comprobación independien
+te de resultados es completamente imposible, pues se carece de un punto
+ de referencia objetivo para comparar, por lo que estos carecen de una forma
+ de poder practicar de manera efectiva e ilimitada, sin depender del continuo
+ trabajo del profesorado.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lo que diferencia principalmente a las personas de cualquiera de los dos
+ puntos de vista anteriores con los ordenadores y dispositivos electrónicos
+ es la capacidad de poder tomar decisiones aplicando el entendimiento horizontal
+, subjetivo y basado en la experiencia y no en reglas a aplicar.
+ Por lo tanto, la tarea de producir análisis sintácticos utilizables en
+ el ámbito de la creación de asistentes basados en la inteligencia artificial
+ se considera un tema popular y continuamente en desarrollo y debate en
+ investigaciones de las últimas décadas.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Este último caso nos lleva al ámbito judicial, donde se muestra una carencia
+ de estandarización intuitiva del significado de los textos legislativos,
+ los contratos y los acuerdos formales, dando lugar a que existan profesiones
+ cuyo único propósito sea el de garantizar la ausencia de vacíos legales
+ a la hora de producir dichos papeles.
+ Todo esto ocurre por una vaga especificación abierta a interpretaciones
+ de la gramática utilizada en este campo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La motivación de este trabajo de investigación es, entonces, aportar un
+ pequeño pero significante grano de arena a la base de lo que será el mundo
+ en los años y las décadas por venir, tanto en el ámbito de la educación,
+ como en el de la tecnología, como en el judicial, como en cualquier otro
+ que se pueda plantear (lenguaje matemático, diplomacia, etcétera).
+ Para ello, se plantean diversos objetivos escalonados que se formulan en
+ el apartado a continuación.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Objetivos del trabajo
+\end_layout
+
+\begin_layout Standard
+El objetivo principal de este trabajo de investigación es, en resumidas
+ cuentas, poder aportar un modelo descriptivo y determinista pero empírico
+ de la gramática del español, basándose en una agrupación de teorías y definicio
+nes de la gramática de autores anteriores y antecedentes, mezclado con un
+ enfoque propio matizado por la mentalidad computacional y matemática, que
+ pueda utilizarse como herramienta de formalización, educación y comprobación,
+ pero además como punto de partida para futuras investigaciones.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Por otro lado, este objetivo ya mencionado da lugar a ciertos enfoques alternati
+vos pero compatibles por los que llevar la investigación, en forma de objetivos
+ secundarios:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Crear una herramienta de uso fácil e inmediato para el análisis de oraciones
+ y sintagmas en español, disponible de forma completamente gratuita al público,
+ para su uso por profesorado, estudiantes, políticos, diplomáticos, abogados,
+ etcétera.
+\end_layout
+
+\begin_layout Enumerate
+Aportar una estructura de modelo fácilmente implementable que permita su
+ uso de forma más eficaz a la hora de realizar análisis computacionales
+ de la sintaxis del español, no solo como punto de apoyo para el anterior
+ objetivo sino también como base para modelos de asistencia mediante inteligenci
+a artificial, chatbots y cualquier tecnología similar.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Agrupar los esfuerzos provenientes de las distintas corrientes lingüísticas
+ existentes para propulsar la gramática española en un trabajo recopilatorio
+ que, además, introduce ciertas variaciones partiendo de un enfoque más
+ tecnológico, algorítmico y modélico.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Modelo adaptado de la gramática española
+\end_layout
+
+\begin_layout Standard
+En esta parte del trabajo de investigación, se diseña y redacta un modelo
+ adaptado de la gramática del español, con la intención de su posterior
+ uso en la implementación del mismo mediante técnicas propias del ámbito
+ de la programación y la algoritmia.
+ Previamente a ello, sin embargo, se nombra la base a partir de la que se
+ construye el modelo, y se menciona en detalle la estructura, metodología
+ de diseño y paradigma utilizado para la creación del mismo.
+ 
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+¿Qué se hace en esta parte? Breve mención de las secciones.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Es de relevancia para el entendimiento del trabajo tener en cuenta que,
+ en la redacción del modelo, se parte de una base nula, posiblemente reasignando
+ definiciones incompatibles a cierta terminología en uso con el fin de simplific
+ar la producción y aumentar la claridad de este.
+ Además, las propuestas de clasificación, análisis y estructurado pueden
+ poseer disparidades significativas con las procedentes de las corrientes
+ gramaticales actuales, incluso, en definiciones generalmente aceptadas
+ previamente.
+ Esto es debido, por otro lado, a los intentos de acercar el modelo a una
+ redacción lo suficientemente formal en el sentido algorítmico como para
+ su utilización sin posible lugar a dudas en las implementaciones.
+ 
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+Lenguaje utilizado y disparidades con la gramática actual.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Por último, por limitaciones de tiempo, de personal y de antecedentes previos
+ a este trabajo de investigación, resulta considerablemente dificil, incluso
+ imposible en la práctica, tratar de definir la totalidad de la gramática
+ española en el mismo, por lo que se ha decidido reducir la lengua en cuestión
+ a un subconjunto del español.
+ Con esto se pretende decir, adicionalmente, que cualquier enunciado válido
+ en esta versión reducida del español es, también, un enunciado válido en
+ el español real.
+ También se descartan ciertas variaciones internas dentro las estructuras
+ sintagmáticas, limitándolas a formas y ordenamientos fácilmente procesables
+ y comunes en el español, mencionados posteriormente en el trabajo.
+ 
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+Subconjunto del español en cuestión, omisión de construcciones y estructuras
+ complejas, etcétera.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Fuentes e investigaciones previas
+\end_layout
+
+\begin_layout Standard
+El modelo presentado y definido a lo largo de las siguientes secciones obtiene
+ su inspiración y punto de partida en diversas corrientes gramaticales y
+ lingüísticas existentes en el momento.
+ Sin embargo, dichas corrientes carecen del rigor matemático o algorítmico
+ necesario para la realización de implementaciones formalmente verificables.
+ De esta manera, el marco bibliográfico constituido por trabajos de relevancia
+ para el diseño del modelo se encuentra severamente limitado.
+ Esto conlleva, como se ha mencionado previamente, la necesidad de simplificar
+ y reducir la gramática tratada en el modelo a un conjunto reducido y delimitado
+ por lo fácilmente deducible y extrapolable a definiciones formales de lo
+ explicado en las fuentes bibliográficas e investigaciones previas de este
+ trabajo de investigación.
+ Sin embargo, esto implica que las fuentes en uso juegan un papel meramente
+ inspiracional o de guía en las definiciones aportadas, por lo que se ruega
+ discreción a la hora de su interpretación en las secciones posteriores.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A continuación, se mencionan brevemente las fuentes que se han utilizado
+ para la construcción y el diseño del modelo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Corpus AnCora.
+
+\shape default
+ 
+\begin_inset CommandInset citation
+LatexCommand citeyearpar
+key "antonia_marti_ancora_2007"
+literal "false"
+
+\end_inset
+
+ Este corpus español-catalán posee diversas anotaciones morfológicas, sintáctica
+s y semánticas de significativa utilidad para este trabajo de investigación.
+ En especial, los dos lexicones extraídos del mismo, AnCora-Verb y AnCora-Nom,
+ forman la base del procesado semántico efectuado en la implementación del
+ modelo.
+ Las agrupaciones en argumentos de los roles semánticos presentes en el
+ modelo se realizan con la intención de simplificar la tarea de llevar su
+ análisis a la práctica, alineándolas con las presentes en estos lexicones.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Nueva gramática de la lengua española.
+
+\shape default
+ 
+\begin_inset CommandInset citation
+LatexCommand citeyearpar
+key "asociacion_de_academias_de_la_lengua_espanola_asale_real_academia_espanola_rae_nueva_2009"
+literal "false"
+
+\end_inset
+
+ Desde su publicación en 2009, esta obra académica ha servido como actualización
+ de la gramática normalizada por las mismas entidades en la primera mitad
+ del siglo anterior.
+ En este trabajo de investigación, la gramática procedente de la misma ha
+ constituido la base para gran parte de la terminología y definiciones en
+ uso y la clasificación de elementos, especialmente en los apartados más
+ relacionados con la morfología y la enumeración de rasgos gramaticales.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Corpus del español del siglo XXI.
+
+\shape default
+ 
+\begin_inset CommandInset citation
+LatexCommand citeyearpar
+key "real_academia_espanola_rae_corpus_2023"
+literal "false"
+
+\end_inset
+
+ Las tablas de frecuencias de este corpus han sido de considerable utilidad
+ para la formación de la base de datos de elementos gramaticales en uso
+ en la posterior implementación, además de proporcionar un análisis de rasgos
+ gramaticales significativamente exhaustivo, razón por la que esta fuente
+ ha sido crucial para el trabajo de investigación.
+ Es por ello por lo que, para el diseño del modelo, se ha tomado la leyenda
+ de rasgos gramaticales proporcionados en el análisis como punto de partida
+ para su nombramiento y clasificación.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Sintaxis generativa del español.
+
+\shape default
+ 
+\begin_inset CommandInset citation
+LatexCommand citeyearpar
+key "zagona_sintaxis_2006"
+literal "false"
+
+\end_inset
+
+ En este libro, se proporciona una visión global de la sintaxis del español
+ desde un punto de vista basado en la gramática generativista originaria
+ de Noam Chomsky.
+ De esta visión surge gran parte de las estructuras de las cláusulas y los
+ sintagmas tratadas en este trabajo de investigación, además de, en general,
+ servir como inspiración movida por las corrientes generativistas para la
+ planificación y el diseño de ciertas secciones del modelo, tanto en los
+ apartados enfocados en la morfología como en los que tratan principalmente
+ la sintaxis del subconjunto del español en cuestión.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+TODO: Añadir más fuentes aquí.
+ Si se llegan a utilizar más, claro.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Estructura y visión del modelo
+\end_layout
+
+\begin_layout Standard
+Dentro del modelo redactado a continuación, se proporciona un enfoque mayoritari
+amente funcional y empírico, evitando comprometer la simplicidad del modelo
+ que se perdería al pretender tratar temas como el origen natural de ciertas
+ estructuras.
+ Por ello, se proporcionan declaraciones que repliquen las construcciones
+ naturales de la lengua con la mayor precisión posible dentro de los límites
+ prácticos del trabajo.
+ 
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+Enfoque más funcional, o generativista, o lo que sea, hablar de eso aquí.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La estructura del mismo consiste en tres niveles fundamentales, ordenados
+ según su dependencia en los niveles anteriores y según el grado de abstracción
+ presente en cada uno de ellos.
+ De esta manera, se comienza tratando el nivel léxico-morfológico, donde
+ se trata la base léxica de la que se parte, sus rasgos gramaticales y la
+ clasificación de estos.
+ A continuación, se menciona el nivel sintáctico, en el que se explican
+ las distintas estructuras válidas para la agrupación de lexías en enunciados
+ o subdivisiones de los mismos.
+ Por último, se describe el nivel semántico, cuya función es la de extraer
+ y procesar el significado de las estructuras formadas mediante la asignación
+ de roles.
+ 
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+División entre nivel léxico-morfológico, nivel sintáctico y nivel semántico.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+De cualquier manera que se plantease el trabajo, sin embargo, siempre sería
+ necesario partir de una base de conocimientos previos no tratados en el
+ mismo, por lo que, durante la creación del modelo, ciertos apartados han
+ sido omitidos por cuestiones de limitaciones o de conveniencia.
+ Específicamente, dos casos son inmediatamente perceptibles y de relevancia:
+ 
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+Omisión de apartados como la formación y flexión de palabras en morfología,
+ o la procedencia de los roles en semántica.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+El nivel léxico-morfológico presenta un vacío de contenido en cuanto al
+ origen, la formación y la flexión de elementos gramaticales, pues, al partir
+ del análisis exhaustivo de elementos previamente realizado por la Real
+ Academia Española, resulta totalmente innecesario definir el proceso a
+ llevar a cabo para efectuar dicho análisis.
+ Así, se ignora en el trabajo de investigación la relación existente entre
+ la organización de los morfemas en los elementos y los rasgos gramaticales
+ que surgen como producto de esta organización.
+\end_layout
+
+\begin_layout Enumerate
+El nivel semántico utiliza una agrupación de roles en argumentos que, aun
+ lógica y válida a la vista, resulta aparentemente arbitraria en cuanto
+ a su selección.
+ Dicha agrupación proviene, sin embargo, de un intento de compatibilizar
+ los argumentos definidos con los presentes en los lexicones procedentes
+ del corpus 
+\shape italic
+AnCora
+\shape default
+, posteriormente utilizados en la implementación de este nivel del modelo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+También cabe destacar que la omisión de análisis de unidades mayores que
+ el enunciado se hace con la intención de simplificar el modelo para su
+ factibilidad, pues el análisis de estructuras textuales requiere de un
+ conocimiento preciso sobre su formación y de una cuantización analítica
+ de las estructuras posibles, cosa que escapa el alcance del trabajo de
+ investigación y requeriría de recursos mayores que los disponibles en el
+ momento.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Por último, a lo largo de toda la redacción que abarca el modelo a continuación,
+ se utiliza en las secciones una notación específica para definir ciertos
+ apartados o estructuras formalmente.
+ Para evitar cualquier tipo de confusión, y definirla en su totalidad en
+ los casos donde esta difiera de la norma, se mostrarán explicaciones completas
+ y exactas, previas a su utilización en el trabajo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Nivel léxico-morfológico
+\end_layout
+
+\begin_layout Standard
+El nivel léxico-morfológico es el primer nivel a tratar en el modelo, pues
+ trata la base léxica sobre la que se construyen, posteriormente, las estructura
+s internas de los enunciados.
+ Además, se describen todos los posibles rasgos de las unidades gramaticales,
+ con el fin de poder utilizarlos para hacer posible su análisis en el nivel
+ sintáctico y en el nivel semántico.
+ Para ello, se introduce a 
+\shape italic
+la lexía
+\shape default
+ como unidad elemental sobre la que construir el resto del modelo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La lexía es un elemento gramatical cuyas partes presentan un elevado índice
+ de inseparabilidad morfológica o forman una función distinta, no necesariamente
+ presentando cierto valor semántico, que cualquier subconjunto de dichas
+ partes.
+ Las lexías engloban términos más convencionales como la palabra y les aporta
+ una definición menos problemática, pero no se limitan únicamente a estos.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Según su estructura morfológica y visual, las lexías se pueden clasificar
+ de la siguiente manera:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Lexías simples.
+
+\shape default
+ Constan de un conjunto de morfemas carente de espaciado o separación simbólica
+ alguna.
+ Se incluyen aquí tanto formas simples como compuestas de las palabras,
+ a diferencia de la clasificación convencional de lexía, pues permite un
+ procesado más simple de las mismas.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Lexías complejas.
+
+\shape default
+ También denominadas como locuciones, se componen de varios morfemas donde
+ sí se presenta una separación mediante espacios o símbolos.
+ Cada isla de morfemas se podría considerar equivalente a una lexía simple,
+ sin embargo, la totalidad de la lexía aporta una función y un valor semántico
+ distintos a cada una de las lexías simples discernibles en su interior,
+ o cualquier agrupación de estas.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Lexías textuales.
+
+\shape default
+ Los nombres propios, los términos numéricos, las expresiones hechas, las
+ citaciones y cualquier término insondable por las herramientas del ámbito
+ gramatical se consideran lexías textuales, pues difieren de las lexías
+ simples y las lexías complejas en que su significado proviene de una asignación
+ artificial del mismo, de un contexto externo al entorno o de una interpretación
+ poética de una o más lexías de otra clase.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Símbolos.
+
+\shape default
+ Estos son constituidos por cualquier marcación indivisible pero estrictamente
+ individual con una función exclusivamente gramatical.
+ Sus usos incluyen, pero no se limitan a, la delimitación o la coordinación
+ de elementos gramaticales, y no constan en ningún alfabeto.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Por otro lado, según su función y la presencia de valor semántico, se pueden
+ clasificar como se presenta a continuación, siendo esta la clasificación
+ de mayor utilidad a lo largo del modelo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Lexías semánticas.
+ 
+\shape default
+Se diferencian al poseer un valor semántico y al constituir casi la totalidad
+ del repertorio léxico.
+ Los adjetivos, los adverbios, los sustantivos y los verbos son los cuatro
+ tipos de lexías semánticas.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Lexías determinantes.
+ 
+\shape default
+Tienen como función la de concretar o determinar lexías, tornando conceptos
+ en referencias.
+ Además, pueden aportar rasgos gramaticales adicionales a dichas lexías,
+ o reforzar los rasgos ya presentes en ellas.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Lexías gramaticales.
+ 
+\shape default
+Estas cohesionan diversas lexías entre sí, formando jerarquías y enumeraciones,
+ o sirven para cambiar la función de otras lexías.
+ Se incluyen aquí las conjunciones, las preposiciones y los símbolos.
+\end_layout
+
+\begin_layout Subsection
+Rasgos gramaticales
+\end_layout
+
+\begin_layout Standard
+
+\shape italic
+Los rasgos gramaticales
+\shape default
+ son propiedades inherentes de las lexías que pueden tomar valores cuantizados
+ y limitados que se encuentran definidos según y para cada rasgo presente.
+ Su presencia se encuentra mayoritariamente condicionada por la clase de
+ lexía en cuestión y, en ciertos casos, por la subclase de la lexía.
+ La utilización de rasgos gramaticales para la organización de lexías y
+ la toma de decisiones analíticas durante su procesado permite la simplificación
+ de ambos procesos, además de su formalización matemática.
+ Estos se nombran de la siguiente manera:
+\begin_inset Formula 
+\begin{gather*}
+r=[\textsc{Rasgo}:\textsc{valor}];R=\{r_{1},r_{2},\cdots,r_{n}\}\\
+r\sim s\iff\text{\ensuremath{r} y \ensuremath{s} representan el mismo rasgo (son \textit{homónimos})}\\
+r\equiv s\iff\text{\ensuremath{r} y \ensuremath{s} representan el mismo rasgo, con el mismo valor (son \textit{equivalentes})}
+\end{gather*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Entre la selección de rasgos gramaticales que se pueden observar como parte
+ de las lexías, algunos de ellos se muestran con una significativamente
+ mayor frecuencia, incluso, en ciertos casos, a lo largo de diversas clases
+ y subclases de lexías.
+ Estos, denominados 
+\shape italic
+rasgos trasversales
+\shape default
+, muestran que, en el español, existen propiedades intrínsecas de las lexías
+ meramente por definición de las mismas.
+ La lista completa de tales rasgos es la siguiente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Animado}:\textsc{sí}/\textsc{no}]$
+\end_inset
+
+.
+ Marca si el objeto referenciado posee la capacidad de actuar como agente
+ de un enunciado, donde sí está animado, o si las funciones que puede realizar
+ la referencia excluyen la función de agente, donde no está animado.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Determinado}:\textsc{sí}/\textsc{no}]$
+\end_inset
+
+.
+ Especifica si se referencia a una instancia específica de un objeto, donde
+ 
+\shape italic
+sí
+\shape default
+ está determinado, o si se referencia al concepto del mismo, donde 
+\shape italic
+no
+\shape default
+ está determinado.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Función}:\textsc{agente}/\textsc{circunstancial}/\textsc{evento}/\textsc{modificador}/\textsc{objeto}/\textsc{paciente}]$
+\end_inset
+
+.
+ Limita el rango de funciones que una lexía puede realizar dentro de una
+ cláusula, variando entre 
+\shape italic
+agente
+\shape default
+, 
+\shape italic
+circunstancial
+\shape default
+, 
+\shape italic
+evento
+\shape default
+, 
+\shape italic
+modificador
+\shape default
+, 
+\shape italic
+objeto
+\shape default
+ y 
+\shape italic
+paciente
+\shape default
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Género}:\textsc{masculino}/\textsc{femenino}/\textsc{neutro}]$
+\end_inset
+
+.
+ Indica el género gramatical del objeto referenciado, pudiendo ser 
+\shape italic
+masculino
+\shape default
+, 
+\shape italic
+femenino
+\shape default
+ o 
+\shape italic
+neutro
+\shape default
+.
+ Se trata al masculino como género no marcado, prevaleciendo en cualquier
+ referencia de múltiples objetos de distinto género.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Número}:\textsc{singular}/\textsc{plural}]$
+\end_inset
+
+.
+ Marca la cantidad en la que se presencia el objeto referenciado, distinguiendo
+ entre 
+\shape italic
+singular
+\shape default
+, si se referencia un único objeto, y 
+\shape italic
+plural
+\shape default
+, si se referencian múltiples objetos.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Persona}:\textsc{primera}/\textsc{segunda}/\textsc{tercera}]$
+\end_inset
+
+.
+ Distingue entre la implicación del objeto referenciado en el acto comunicativo,
+ denominando 
+\shape italic
+primera persona
+\shape default
+ al emisor, 
+\shape italic
+segunda persona
+\shape default
+ al receptor y 
+\shape italic
+tercera persona
+\shape default
+ a cualquier otro objeto no categorizable en los anteriores.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Signo}:\textsc{aditivo}/\textsc{sustractivo}]$
+\end_inset
+
+.
+ Nota el signo con el que ha de marcarse una propiedad o evento, siendo
+ 
+\shape italic
+aditivo
+\shape default
+ si se posee o se considera, respectivamente, y 
+\shape italic
+sustractivo
+\shape default
+ de no ser así.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Entre los rasgos de una lexía y sus homónimos en las lexías que la modifican,
+ según los requisitos para su validez y el rasgo resultante tras la modificación
+, se observa una de las siguientes tres relaciones:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Relación de atribución
+\shape default
+.
+ Se reemplaza el rasgo original por el rasgo modificador, salvo que este
+ último no se encuentre presente en las lexías modificadoras.
+ Se considera inválida si existe disparidad entre los rasgos de las lexías
+ modificadoras, no pudiéndose determinar el rasgo resultante.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Relación de concordancia
+\shape default
+.
+ Se precisa de equivalencia entre su rasgo original y el rasgo modificador
+ para su validez, manteniendo el rasgo original en el caso de no encontrarse
+ presente en las lexías modificadoras.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Relación de descarte
+\shape default
+.
+ Se ignora el rasgo modificador, manteniendo su rasgo original e, incluso,
+ ausentándolo de no estar presente en la lexía.
+ Al depender exclusivamente de la misma, esta relación es siempre considerada
+ válida.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Existen lexías que poseen diversas acepciones de su conjunto 
+\begin_inset Formula $R$
+\end_inset
+
+ de rasgos gramaticales donde, exclusivamente, se muestra una variación
+ en los valores de algunos de los rasgos gramaticales presentes.
+ En estos casos, se decide agrupar los valores aceptados para un mismo rasgo
+ gramatical, formando 
+\shape italic
+rasgos polivalentes
+\shape default
+.
+ Su representación se realiza como se muestra a continuación:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+r=[\textsc{Rasgo}:\textsc{valor 1}+\textsc{valor 2}+\cdots]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cuando se forman relaciones entre dos rasgos donde uno o ambos resultan
+ ser polivalentes, puede darse la situación donde alguno de los valores
+ aceptados resulta en una relación inválida.
+ En dichos casos, se procede con la eliminación de los valores que causan
+ tales relaciones inválidas.
+\end_layout
+
+\begin_layout Subsection
+Las lexías semánticas
+\end_layout
+
+\begin_layout Standard
+Las lexías semánticas son aquellas que dotan al enunciado en el que estas
+ se encuentran de un cierto valor semántico e intrínseco de las lexías perteneci
+entes a esta clase.
+ Sin embargo, las lexías semánticas carecen de otra función que la aportación
+ de dicho valor, por lo que dependen de otras clases para la determinación
+ de los objetos referenciados, al igual que para la formación de cualquier
+ jerarquía avanzada entre las lexías.
+ El valor semántico de las mismas se traslada en forma de rasgos gramaticales
+ completamente dependientes del significado, por lo que el análisis de los
+ rasgos presentes en estas se limita exclusivamente a rasgos generales y
+ puramente gramaticales.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Adicionalmente, en el ámbito morfológico del estudio lingüístico del español,
+ destacan por ser la única clase de lexías generalmente divisibles en unidades
+ de menor tamaño, denominadas como 
+\shape italic
+monemas
+\shape default
+.
+ Estas unidades pueden considerarse, según su aportación a la lexía formada,
+ como:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Monemas adhesivos.
+
+\shape default
+ Carecen de propósito semántico o gramatical, pues se se sitúan entre otros
+ monemas para su adecuada unión.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Monemas gramaticales.
+
+\shape default
+ Aportan los rasgos gramaticales presentes en la lexía, además de indicar
+ la subclase de lexía semántica en cuestión.
+ Son monemas gramaticales todo afijo sin valor semántico, además de los
+ morfemas flexivos.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Monemas semánticos.
+
+\shape default
+ Dotan a la lexía del significado semántico propio de esta clase de lexías.
+ Debido a la elevada variedad de monemas semánticos existentes, estos vuelven
+ a las lexías semánticas el principal constituyente del repertorio léxico
+ del español.
+ Se incluyen aquí los lexemas, además de ciertos afijos.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Por último, las lexías semánticas, dependiendo de la localización y la función
+ que estas desempeñan dentro de las distintas partes que componen un enunciado,
+ se pueden dividir en cuatro subclases, mencionadas respectivamente con
+ los rasgos generalmente presentes en las lexías de cada subclase:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Adjetivos.
+ Aporta una propiedad individual sobre un objeto referenciado, o compara
+ dicha propiedad del mismo con la de otros objetos.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Género}:\textsc{masculino}/\textsc{femenino}]$
+\end_inset
+
+.
+ Indica el género gramatical del objeto que recibe la propiedad, pudiendo
+ ser 
+\shape italic
+masculino
+\shape default
+ o 
+\shape italic
+femenino
+\shape default
+.
+ En el caso de los adjetivos de doble terminación, este rasgo resulta ser
+ polivalente, pudiendo aportar dicha propiedad a objetos masculinos y femeninos.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Grado}:\textsc{positivo}/\textsc{comparativo}/\textsc{superlativo}]$
+\end_inset
+
+.
+ Marca la relación resultante tras la aportación de la propiedad, siendo
+ este 
+\shape italic
+positivo
+\shape default
+, si se limita a aportar la propiedad, 
+\shape italic
+comparativo
+\shape default
+, si compara el nivel de dicha propiedad presente entre el objeto referenciado
+ y otro objeto, o 
+\shape italic
+superlativo
+\shape default
+, si expresa el nivel máximo de la propiedad respecto a un ámbito de relevancia.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Número}:\textsc{singular}/\textsc{plural}]$
+\end_inset
+
+.
+ Especifica el número del objeto que recibe la propiedad, distinguiéndose
+ entre 
+\shape italic
+singular
+\shape default
+, si se aporta a un único objeto, y 
+\shape italic
+plural
+\shape default
+, si se aporta a múltiples objetos.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Propiedad}:\textsc{calificativo}/\textsc{relacional}]$
+\end_inset
+
+.
+ Distingue entre adjetivos 
+\shape italic
+calificativos
+\shape default
+, que aportan propiedades intrínsecas del objeto, y adjetivos 
+\shape italic
+relaciones
+\shape default
+, que aportan propiedades que emergen de relaciones entre el objeto y su
+ entorno.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Signo}:\textsc{aditivo}/\textsc{sustractivo}]$
+\end_inset
+
+.
+ Nota el signo con el que se aporta la propiedad, siendo 
+\shape italic
+aditivo
+\shape default
+ si indica la presencia de dicha propiedad, o 
+\shape italic
+sustractivo
+\shape default
+ si indica la ausencia de esta.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Terminación}:\textsc{única}/\textsc{doble}]$
+\end_inset
+
+.
+ Puede ser de terminación 
+\shape italic
+única
+\shape default
+, si el adjetivo no varía según su género, o de terminación 
+\shape italic
+doble
+\shape default
+, si este posee versiones distintas para el género masculino y femenino.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Adverbios.
+ 
+\shape default
+Expresa el grado, el modo u otras características circunstanciales de una
+ propiedad o un evento.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Léxico}:\textsc{sí}/\textsc{no}]$
+\end_inset
+
+.
+ Indica si el valor semántico del adverbio en cuestión 
+\shape italic
+sí
+\shape default
+ es léxico, si existe sin dependencia alguna, o 
+\shape italic
+no
+\shape default
+ es léxico, si este requiere de un entorno para la consolidación de su valor.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Signo}:\textsc{aditivo}/\textsc{sustractivo}]$
+\end_inset
+
+.
+ Nota el signo del valor expresado por el adverbio, siendo 
+\shape italic
+aditivo
+\shape default
+ si indica la presencia de dicho valor, o 
+\shape italic
+sustractivo
+\shape default
+ si indica la ausencia de este.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Sustantivos.
+ 
+\shape default
+Referencia a un objeto cualquiera, pudiendo este ser una instancia específica
+ o el concepto general del mismo.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Argumental}:\textsc{sí}/\textsc{no}]$
+\end_inset
+
+.
+ Marca la capacidad del sustantivo de recibir argumentos, 
+\shape italic
+sí
+\shape default
+ siendo argumental si posee dicha capacidad, y 
+\shape italic
+no
+\shape default
+ siéndolo si carece de ella.
+ Los sustantivos argumentales mayoritariamente proceden de la deverbalización
+ de una cláusula, donde se preservan los argumentos de esta.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Cantidad}:\textsc{continuo}/\textsc{discreto}]$
+\end_inset
+
+.
+ Limita las formas en las que distintas cantidades del objeto referenciado
+ por el sustantivo pueden ser nombradas, siendo 
+\shape italic
+continuo
+\shape default
+ si se presenta en cantidades no numerales o dependientes de un sistema
+ unitario, o 
+\shape italic
+discreto
+\shape default
+ si se puede cuantizar en cantidades numerales enteras.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Género}:\textsc{masculino}/\textsc{femenino}]$
+\end_inset
+
+.
+ Indica el género gramatical del objeto referenciado, pudiendo ser 
+\shape italic
+masculino
+\shape default
+ o 
+\shape italic
+femenino
+\shape default
+.
+ Al no existir sustantivos de género neutro, este valor se considera inválido.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Número}:\textsc{singular}/\textsc{plural}]$
+\end_inset
+
+.
+ Denota el número del objeto referenciado, distinguiéndose entre 
+\shape italic
+singular
+\shape default
+, si se referencia un único objeto, y 
+\shape italic
+plural
+\shape default
+, si se referencian múltiples objetos.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Determinado}:\textsc{sí}/\textsc{no}]$
+\end_inset
+
+.
+ Especifica si se referencia a una instancia específica de un objeto, donde
+ 
+\shape italic
+sí
+\shape default
+ está determinado, o si se referencia al concepto del mismo, donde 
+\shape italic
+no
+\shape default
+ está determinado.
+ Un sustantivo solo puede estar determinado sin depender de ningún determinante
+ cuando este referencia a un objeto con nombre propio.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Verbos
+\shape default
+.
+ Especifica el evento de relevancia en una cláusula, ya sea la cláusula
+ principal del enunciado o una cláusula subordinada dentro de esta.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Género}:\textsc{masculino}/\textsc{femenino}]$
+\end_inset
+
+.
+ En el caso de algunos tiempos no conjugables, indica el género gramatical
+ del verbo, pudiendo ser 
+\shape italic
+masculino
+\shape default
+ o 
+\shape italic
+femenino
+\shape default
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Modo}:\textsc{indicativo}/\textsc{subjuntivo}/\textsc{imperativo}]$
+\end_inset
+
+.
+ Marca el modo del evento especificado por el verbo, siendo este 
+\shape italic
+indicativo
+\shape default
+, si indica la realización de una acción, 
+\shape italic
+subjuntivo
+\shape default
+, al relegar el modo del evento a cláusulas que lo contengan, o 
+\shape italic
+imperativo
+\shape default
+, si demanda la realización del evento a un agente externo.
+ No se encuentra presente en los tiempos no conjugables.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Número}:\textsc{singular}/\textsc{plural}]$
+\end_inset
+
+.
+ En el caso de algunos tiempos no conjugables, denota el número gramatical
+ del verbo, distinguiéndose entre 
+\shape italic
+singular
+\shape default
+ y 
+\shape italic
+plural
+\shape default
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Persona}:\textsc{primera}/\textsc{segunda}/\textsc{tercera}]$
+\end_inset
+
+.
+ Distingue entre la implicación del agente (o del paciente, si se encuentra
+ en una cláusula pasiva) en el acto comunicativo, denominando 
+\shape italic
+primera persona
+\shape default
+ al emisor, 
+\shape italic
+segunda persona
+\shape default
+ al receptor y 
+\shape italic
+tercera persona
+\shape default
+ a cualquier otro objeto no categorizable en los anteriores.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Tiempo}:\cdots]$
+\end_inset
+
+.
+ Según la distancia temporal al momento de realización del evento en cuestión,
+ los posibles tiempos de un verbo son: 
+\shape italic
+condicional compuesto, condicional simple, futuro compuesto, futuro simple,
+ gerundio compuesto, gerundio simple, infinitivo compuesto, infinitivo simple,
+ participio compuesto, participio simple, presente, pretérito anterior,
+ pretérito imperfecto, pretérito perfecto compuesto, pretérito perfecto
+ simple
+\shape default
+ y 
+\shape italic
+pretérito pluscuamperfecto
+\shape default
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Variante}:\textsc{-ra}/\textsc{-se}]$
+\end_inset
+
+.
+ Indica la terminación morfológica del verbo en los tiempos verbales donde
+ se presenta la opción.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Las lexías determinantes
+\end_layout
+
+\begin_layout Standard
+Las lexías determinantes son las encargadas de determinar a objetos referenciado
+s por otras lexías y, en casos, referenciar a los objetos mismos.
+ De esta manera, las lexías determinantes son capaces de actuar de forma
+ independiente para la referenciación de objetos.
+ Sin embargo, se distinguen de las lexías semánticas al carecer de un valor
+ semántico e intrínseco, por lo que dependen de estas para la referenciación
+ de objetos por medio otro que la 
+\shape italic
+deíxis
+\shape default
+, proceso por el que se referencian a objetos previamente conocidos o presentes
+ en el contexto lingüístico.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Hay ocasiones en las que más de una lexía determinante puede estar determinando
+ a una lexía semántica o, incluso, formando una única referencia a un objeto
+ sin depender de lexía semántica alguna.
+ En estos casos, se toma una de las lexías como principal (la lexía semántica
+ o la lexía determinante con menor índice de prioridad, respectivamente),
+ y se consideran al resto como modificadores de esta.
+ Como las lexías determinantes, además de determinar, aportan ciertas propiedade
+s con valor gramatical, como la cantidad y la posesión, este mecanismo permite
+ la especificación de más de una propiedad en la misma referencia.
+ Hay que tener en cuenta, sin embargo, que dos lexías determinantes con
+ el mismo índice de prioridad no se pueden encontrar modificando a la misma
+ lexía o como referencia independiente.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Además, las lexías determinantes se distinguen morfológicamente de las lexías
+ semánticas en su estricta indivisibilidad, pues se constituyen exclusivamente
+ de una única unidad morfológica.
+ Estas, por otro lado, se encuentran cuantizadas y limitadas a un conjunto
+ reducido e inmutable, por lo que existe un número significativamente menor
+ de lexías determinantes.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Por último, las lexías determinantes, según la propiedad característica
+ de esta, se pueden agrupar en diversas subclases, todas ellas acompañadas
+ por su correspondiente índice de prioridad:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Artículos (1)
+\shape default
+.
+ Indica el conocimiento previo sobre el objeto referenciado dentro del entorno
+ en cuestión.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Definido}:\textsc{sí}/\textsc{no}]$
+\end_inset
+
+.
+ Especifica la presencia de previo conocimiento sobre el objeto, 
+\shape italic
+sí
+\shape default
+ estando definido si es conocido respecto al entorno, o 
+\shape italic
+no
+\shape default
+ estándolo de no ser así.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Género}:\textsc{masculino}/\textsc{femenino}/\textsc{neutro}]$
+\end_inset
+
+.
+ Indica el género gramatical del objeto referenciado, pudiendo ser 
+\shape italic
+masculino
+\shape default
+, 
+\shape italic
+femenino
+\shape default
+ o 
+\shape italic
+neutro
+\shape default
+.
+ En el caso de referenciar a un objeto de género neutro, este se ha de hallar
+ como lexía principal de la referencia.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Número}:\textsc{singular}/\textsc{plural}]$
+\end_inset
+
+.
+ Marca la cantidad en la que se presencia el objeto referenciado, distinguiendo
+ entre 
+\shape italic
+singular
+\shape default
+, si se referencia un único objeto, y 
+\shape italic
+plural
+\shape default
+, si se referencian múltiples objetos.
+ Este es siempre singular, en el caso de referenciar a un objeto de género
+ neutro.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Cuantificadores (2)
+\shape default
+.
+ Especifica la cantidad relativa en la que se presencia el objeto referenciado.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Género}:\textsc{masculino}/\textsc{femenino}]$
+\end_inset
+
+.
+ Indica el género gramatical del objeto referenciado, pudiendo ser 
+\shape italic
+masculino
+\shape default
+, 
+\shape italic
+femenino
+\shape default
+ o 
+\shape italic
+neutro
+\shape default
+.
+ En el caso de referenciar a un objeto de género neutro, este se ha de hallar
+ como lexía principal de la referencia.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Número}:\textsc{singular}/\textsc{plural}]$
+\end_inset
+
+.
+ Marca la cantidad en la que se presencia el objeto referenciado, distinguiendo
+ entre 
+\shape italic
+singular
+\shape default
+, si se referencia un único objeto, y 
+\shape italic
+plural
+\shape default
+, si se referencian múltiples objetos.
+ Este es siempre singular, en el caso de referenciar a un objeto de género
+ neutro.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Predeterminante}:\textsc{sí}/\textsc{no}]$
+\end_inset
+
+.
+ Limita su función como posible predeterminante, especificando si 
+\shape italic
+sí
+\shape default
+ puede actuar como uno, o si 
+\shape italic
+no
+\shape default
+ es posible.
+ Los únicos predeterminantes en el español son las variaciones de género
+ y número de 
+\begin_inset Quotes fld
+\end_inset
+
+todo
+\begin_inset Quotes frd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Rango}:\textsc{parcial}/\textsc{universal}]$
+\end_inset
+
+.
+ Si el cuantificador denota a un conjunto nulo o absoluto respecto a un
+ entorno o marco de referencia, este se considera de rango 
+\shape italic
+universal
+\shape default
+.
+ Sin embargo, si dicho conjunto contiene una cantidad no absoluta de elementos,
+ o es imprecisa, se considera de rango 
+\shape italic
+parcial
+\shape default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Demostrativos (1)
+\shape default
+.
+ Aporta la distancia del emisor o receptor al objeto referenciado en niveles
+ discretos, actuando además como una forma de señalamiento.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Distancia}:\textsc{corta}/\textsc{media}/\textsc{larga}]$
+\end_inset
+
+.
+ Especifica el nivel discreto de distancia en el que se encuentra el objeto
+ referenciado respecto a un punto de referencia, pudiendo ser distancia
+ 
+\shape italic
+corta
+\shape default
+, 
+\shape italic
+media
+\shape default
+ o 
+\shape italic
+larga
+\shape default
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Género}:\textsc{masculino}/\textsc{femenino}/\textsc{neutro}]$
+\end_inset
+
+.
+ Indica el género gramatical del objeto referenciado, pudiendo ser 
+\shape italic
+masculino
+\shape default
+, 
+\shape italic
+femenino
+\shape default
+ o 
+\shape italic
+neutro
+\shape default
+.
+ En el caso de referenciar a un objeto de género neutro, este se ha de hallar
+ como lexía principal de la referencia.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Número}:\textsc{singular}/\textsc{plural}]$
+\end_inset
+
+.
+ Marca la cantidad en la que se presencia el objeto referenciado, distinguiendo
+ entre 
+\shape italic
+singular
+\shape default
+, si se referencia un único objeto, y 
+\shape italic
+plural
+\shape default
+, si se referencian múltiples objetos.
+ Este es siempre singular, en el caso de referenciar a un objeto de género
+ neutro.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Interrogativos (1)
+\shape default
+.
+ Referencia a cierta propiedad de un objeto por la que se pregunta, o introduce
+ una cláusula subordinada que sustituye al valor de dicha propiedad.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Género}:\textsc{masculino}/\textsc{femenino}/\textsc{neutro}]$
+\end_inset
+
+.
+ Indica el género gramatical del objeto referenciado, pudiendo ser 
+\shape italic
+masculino
+\shape default
+, 
+\shape italic
+femenino
+\shape default
+ o 
+\shape italic
+neutro
+\shape default
+.
+ Los interrogativos frecuentemente carecen de género marcado morfológicamente,
+ por lo que se suele considerar un rasgo polivalente en la práctica.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Número}:\textsc{singular}/\textsc{plural}]$
+\end_inset
+
+.
+ Marca la cantidad en la que se presencia el objeto referenciado, distinguiendo
+ entre 
+\shape italic
+singular
+\shape default
+, si se referencia un único objeto, y 
+\shape italic
+plural
+\shape default
+, si se referencian múltiples objetos.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Numerales (2)
+\shape default
+.
+ Aporta la cantidad, el orden o la división, de forma exacta y numeral,
+ en la que se presencia el objeto referenciado.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Forma numérica}:\textsc{cardinal}/\textsc{ordinal}/\textsc{partitivo}]$
+\end_inset
+
+.
+ Nota la forma numérica del número expresado, siendo 
+\shape italic
+cardinal
+\shape default
+ si expresa una cantidad, 
+\shape italic
+ordinal
+\shape default
+ si expresa orden o 
+\shape italic
+partitivo
+\shape default
+ si expresa una subdivisión de la unidad.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Género}:\textsc{masculino}/\textsc{femenino}]$
+\end_inset
+
+.
+ Indica el género gramatical del objeto referenciado inferior en la relación
+ formada, pudiendo ser 
+\shape italic
+masculino
+\shape default
+ o 
+\shape italic
+femenino
+\shape default
+.
+ El género se encuentra, en la mayoría de casos, como rasgo polivalente,
+ pues no se encuentra distinguido morfológicamente.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Número}:\textsc{singular}/\textsc{plural}]$
+\end_inset
+
+.
+ Marca la cantidad en la que se presencia el objeto referenciado, distinguiendo
+ entre 
+\shape italic
+singular
+\shape default
+, si se referencia un único objeto, y 
+\shape italic
+plural
+\shape default
+, si se referencian múltiples objetos.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Posesivos (3)
+\shape default
+.
+ Denota el poseedor del objeto referenciado o a la base de la relación presentad
+a en este, respecto al entorno en cuestión.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Género}:\textsc{masculino}/\textsc{femenino}]$
+\end_inset
+
+.
+ Indica el género gramatical del objeto referenciado inferior en la relación
+ formada, pudiendo ser 
+\shape italic
+masculino
+\shape default
+ o 
+\shape italic
+femenino
+\shape default
+.
+ Solo se encuentra presente cuando actúa como modificador posterior.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Número}:\textsc{singular}/\textsc{plural}]$
+\end_inset
+
+.
+ Marca la cantidad en la que se presencia el objeto referenciado inferior
+ en la relación formada, distinguiendo entre 
+\shape italic
+singular
+\shape default
+, si se referencia un único objeto, y 
+\shape italic
+plural
+\shape default
+, si se referencian múltiples objetos.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Número (superior)}:\textsc{singular}/\textsc{plural}]$
+\end_inset
+
+.
+ Marca la cantidad en la que se presencia el poseedor u objeto referenciado
+ superior en la relación formada, distinguiendo entre 
+\shape italic
+singular
+\shape default
+, si se referencia un único objeto, y 
+\shape italic
+plural
+\shape default
+, si se referencian múltiples objetos.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Persona (superior)}:\textsc{primera}/\textsc{segunda}/\textsc{tercera}]$
+\end_inset
+
+.
+ Distingue entre la implicación del poseedor u objeto referenciado superior
+ en la relación formada en el acto comunicativo, denominando 
+\shape italic
+primera persona
+\shape default
+ al emisor, 
+\shape italic
+segunda persona
+\shape default
+ al receptor y 
+\shape italic
+tercera persona
+\shape default
+ a cualquier otro objeto no categorizable en los anteriores.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Pronombres personales (1)
+\shape default
+.
+ Referencia a una entidad perteneciente al entorno en cuestión.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Género}:\textsc{masculino}/\textsc{femenino}/\textsc{neutro}]$
+\end_inset
+
+.
+ Indica el género gramatical del objeto referenciado, pudiendo ser 
+\shape italic
+masculino
+\shape default
+, 
+\shape italic
+femenino
+\shape default
+ o 
+\shape italic
+neutro
+\shape default
+.
+ En el caso de referenciar a un objeto de género neutro, este se ha de hallar
+ como lexía principal de la referencia.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Número}:\textsc{singular}/\textsc{plural}]$
+\end_inset
+
+.
+ Marca la cantidad en la que se presencia el objeto referenciado, distinguiendo
+ entre 
+\shape italic
+singular
+\shape default
+, si se referencia un único objeto, y 
+\shape italic
+plural
+\shape default
+, si se referencian múltiples objetos.
+ Este es siempre singular, en el caso de referenciar a un objeto de género
+ neutro.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Persona}:\textsc{primera}/\textsc{segunda}/\textsc{tercera}]$
+\end_inset
+
+.
+ Distingue entre la implicación del objeto referenciado en el acto comunicativo,
+ denominando 
+\shape italic
+primera persona
+\shape default
+ al emisor, 
+\shape italic
+segunda persona
+\shape default
+ al receptor y 
+\shape italic
+tercera persona
+\shape default
+ a cualquier otro objeto no categorizable en los anteriores.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Relativos (1)
+\shape default
+.
+ Presenta un valor deíctico e introduce una cláusula subordinada, sustituyendo
+ al objeto referenciado dentro de ella.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Género}:\textsc{masculino}/\textsc{femenino}/\textsc{neutro}]$
+\end_inset
+
+.
+ Indica el género gramatical del objeto referenciado, pudiendo ser 
+\shape italic
+masculino
+\shape default
+, 
+\shape italic
+femenino
+\shape default
+ o 
+\shape italic
+neutro
+\shape default
+.
+ La mayoría de relativos carecen de distinción morfológica entre géneros,
+ por lo que el rasgo frecuentemente se considera polivalente en la práctica.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Número}:\textsc{singular}/\textsc{plural}]$
+\end_inset
+
+.
+ Marca la cantidad en la que se presencia el objeto referenciado, distinguiendo
+ entre 
+\shape italic
+singular
+\shape default
+, si se referencia un único objeto, y 
+\shape italic
+plural
+\shape default
+, si se referencian múltiples objetos.
+ Al igual que el género, este suele considerarse polivalente en la práctica.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Las lexías gramaticales
+\end_layout
+
+\begin_layout Standard
+Las lexías gramaticales son las encargadas de aglutinar otras lexías en
+ estructuras más complejas que las que ellas mismas pueden formar.
+ Se distinguen del resto, particularmente, en que no aportan ningún valor
+ o propiedad de ningún tipo a otras lexías, a la cláusula o a la totalidad
+ del enunciado.
+ Sin embargo, poseen la capacidad de agregar pausas textuales, formar coordinaci
+ones entre lexías y cláusulas de la misma clase, adaptar lexías para la
+ modificación de otras y jerarquizar dicha modificación de lexías.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Estas, según su función principal, se agrupan en las siguientes subclases:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Conjunciones
+\shape default
+.
+ Según la estructura que marque, forma jerarquías entre lexías o coordina
+ varias lexías o cláusulas de la misma clase en una única.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Estructura}:\textsc{coordinante}/\textsc{subordinante}]$
+\end_inset
+
+.
+ Indica el tipo de estructura marcada por la lexía, siendo 
+\shape italic
+coordinante
+\shape default
+ si aglutina varias lexías o cláusulas en una única, o 
+\shape italic
+subordinante
+\shape default
+ si introduce una cláusula subordinada.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textsc{Relación}:\textsc{adversativa}/\textsc{copulativa}/\textsc{disyuntiva}]$
+\end_inset
+
+.
+ En el caso de tratarse de una conjunción coordinante, especifica la relación
+ entre las lexías o las cláusulas coordinadas, siendo 
+\shape italic
+adversativa
+\shape default
+ si las relaciona como elementos opuestos, 
+\shape italic
+copulativa
+\shape default
+ si las agrupa en una única unidad o 
+\shape italic
+disyuntiva
+\shape default
+ si propone la selección exclusiva de una de ellas.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Preposiciones
+\shape default
+.
+ Modifican el rango de funciones realizables por una lexía, adaptándolas
+ para la modificación de otras lexías o para su adecuada situación como
+ argumentos en su cláusula.
+ Las preposiciones carecen de rasgos gramaticales generalmente presentes.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Símbolos
+\shape default
+.
+ Según su tipo, extienden coordinaciones para incluir a un mayor número
+ de lexías o cláusulas, rompen o terminan divisiones estructurales en el
+ enunciado o añaden pausas textuales.
+ Los símbolos carecen de rasgos gramaticales generalmente presentes.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Nivel sintáctico
+\end_layout
+
+\begin_layout Standard
+Tras el nivel léxico-morfológico, el nivel sintáctico es el siguiente nivel
+ a tratar en el modelo, pues es el encargado de describir las siguientes
+ estructuras que resultan de la modificación, coordinación y jerarquización
+ de lexías, mencionando con exactitud su composición, sus requisitos de
+ formación y el orden de los elementos dentro de dichas estructuras.
+ Para ello, se introduce como unidad principal 
+\shape italic
+el sintagma
+\shape default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Por otro lado, las lexías y los sintagmas resultantes precisan de alguna
+ estructura adicional que los contenga, formando el enunciado en cuestión,
+ pues este carece del rigor que las estructuras sintagmáticas presentan
+ en su formación, orden y requisitos.
+ Para ello, se introduce, además, la unidad de 
+\shape italic
+la cláusula
+\shape default
+, ya previamente mencionada.
+\end_layout
+
+\begin_layout Subsection
+Notación de Backus-Naur
+\end_layout
+
+\begin_layout Standard
+Para poder mantener un moderado rigor matemático a la hora de describir
+ las estructuras resultantes de las operaciones previamente descritas, se
+ utiliza una notación proveniente de la rama científica de la computación
+ y la algoritmia, conocida como la notación de Backus-Naur (BNF, o 
+\shape italic
+Backus-Naur form
+\shape default
+, en inglés) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "backus_bnf_1959"
+literal "false"
+
+\end_inset
+
+, que se basa en las reglas generativistas de Noam Chomsky.
+ Esta es considerable como un metalenguaje formalizado para expresar gramáticas
+ libres de contexto, y es frecuentemente utilizada para la descripción de
+ lenguajes de programación de forma teórica.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La unidad básica en esta notación, 
+\shape italic
+la regla
+\shape default
+, se define especificando su composición de forma ordenada.
+ Para ello, a cada regla se le asigna una expresión que define dicha estructura.
+ En su forma elemental, esta regla se define de la siguiente forma:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\textsc{\bigl\langle Regla\bigr\rangle}\coloneqq\textit{expresión}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Las expresiones de las reglas se componen de una de las siguientes formaciones
+ posibles:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\textit{literal}$
+\end_inset
+
+.
+ La primera expresión elemental es el literal, consistiendo este en un conjunto
+ de caracteres en cursiva delimitado por espacios, que forman una lexía
+ específica.
+ Esto es utilizable para definir ciertas reglas a partir de lexías específicas,
+ o en casos donde el rango de lexías posibles para dicha regla sea lo suficiente
+mente reducido como para su enumeración.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\textsc{\bigl\langle Regla\bigr\rangle}$
+\end_inset
+
+.
+ La última expresión elemental es la sustitución de otra regla dentro de
+ ella, permitiendo la creación de estructuras recursivas y jerarquías de
+ reglas, operación fundamental para la definición de una gramática libre
+ de contexto.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\textit{expresión}\quad\textit{expresión}$
+\end_inset
+
+.
+ La siguiente expresión elemental es la concatenación incondicional de otras,
+ mediante su situación delimitada entre ellas por espacios.
+ Al ser una operación recursiva, su aplicación para más de dos expresiones
+ es divisible en parejas compatibles con esta operación.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\textit{expresión}\:|\:\textit{expresión}$
+\end_inset
+
+.
+ La barra actúa como operador de selección, por lo que una expresión de
+ esta forma equivale a exclusivamente una de las dos expresiones nombradas
+ en la estructura.
+ Esto permite la creación de reglas que pueden concordar con dos o más estructur
+as distintas.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $[\textit{expresión}]$
+\end_inset
+
+.
+ Al rodear la expresión por corchetes, se indica que la presencia de la
+ misma es opcional, equivaliendo de forma selectiva tanto a esa expresión
+ como a una expresión vacía.
+ Esta operación es la que permite la omisión de ciertas partes dentro de
+ algunas reglas.
+ Si esta contiene un subíndice posterior a ella, 
+\begin_inset Formula $[\textit{expresión}]_{1}$
+\end_inset
+
+, se presente limitar la omisión de la misma, garantizando la presencia
+ de, al menos, una de las expresiones marcadas con el mismo subíndice.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\{\textit{expresión}\}$
+\end_inset
+
+.
+ Al delimitar la expresión por llaves, se marca la opcionalidad de su presencia.
+ Sin embargo, a diferencia de la anterior, la expresión puede aparecer múltiples
+ veces, es decir, esta se encuentra cero o más veces.
+ Si esta contiene una cruz posterior a ella, 
+\begin_inset Formula $\{\textit{expresión}\}+$
+\end_inset
+
+, se prohíbe su omisión, apareciendo una o más veces necesariamente.
+ En cambio, si esta contiene un subíndice posterior a ella, 
+\begin_inset Formula $\{\textit{expresión}\}_{1}$
+\end_inset
+
+, se pretende limitar la omisión de la misma, garantizando la presencia
+ de, al menos, una de las expresiones marcadas con el mismo subíndice.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $(\textit{expresión})$
+\end_inset
+
+.
+ Al cerrar la expresión por paréntesis, se consigue delimitar a esta, con
+ el fin de marcar la extensión de los operadores cercanos, pues estos se
+ limitan a incluir a las expresiones inmediatamente anteriores y posteriores,
+ salvo que se utilice esta misma operación como agrupación.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Es importante tener en cuenta durante la lectura de las descripciones de
+ las reglas en el modelo que las reglas para todas las subclases de lexías
+ presentes en cada clase se encuentran predefinidas con los siguientes nombres:
+ 
+\begin_inset Formula $\bigl\langle\textsc{Adjetivo}\bigr\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\bigl\langle\textsc{Adverbio}\bigr\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\bigl\langle\textsc{Sustantivo}\bigr\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\bigl\langle\textsc{Verbo}\bigr\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\bigl\langle\textsc{Artículo}\bigr\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\bigl\langle\textsc{Cuantificador}\bigr\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\bigl\langle\textsc{Demostrativo}\bigr\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\bigl\langle\textsc{Interrogativo}\bigr\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\bigl\langle\textsc{Numeral}\bigr\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\bigl\langle\textsc{Posesivo}\bigr\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\bigl\langle\textsc{Pronombre personal}\bigr\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\bigl\langle\textsc{Relativo}\bigr\rangle$
+\end_inset
+
+, 
+\begin_inset Formula $\bigl\langle\textsc{Conjunción}\bigr\rangle$
+\end_inset
+
+ y 
+\begin_inset Formula $\bigl\langle\textsc{Preposición}\bigr\rangle$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Por último, debido a la naturaleza combinatoria de las estructuras definidas
+ con esta notación y por la inexactitud de la lengua natural, se puede dar
+ el caso donde el mismo enunciado sea analizable resultando en más de una
+ estructura distinta.
+ Como todas las estructuras resultantes podrían ser válidas desde un punto
+ de vista sintáctico, se precisa de una comprensión semántica para el descarte
+ de las estructuras semánticamente inválidas.
+ La búsqueda de una solución se encuentra fuera del alcance del trabajo
+ de investigación, sin embargo, se proporciona una aproximación funcional
+ y suficientemente precisa en la implementación del modelo.
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Subsection
+El sintagma
+\end_layout
+
+\begin_layout Standard
+El sintagma es la estructura resultante de la agrupación de una lexía semántica
+ junto a toda otra lexía o sintagma que la modifique.
+ De esta forma, la mayoría de la jerarquía resultante de la aplicación de
+ modificadores proviene de la existencia de sintagmas que los incluya, frecuente
+mente de forma recursiva.
+ Como se muestra en la posterior definición de las estructuras sintagmáticas,
+ con el fin de simplificar las reglas que las definen, se tratan a las lexías
+ carentes de modificadores como sintagmas que contienen una única lexía.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El sintagma posee un núcleo, compuesto de una lexía semántica u otro sintagma,
+ sobre el que se aplican el resto de lexías y sintagmas presentes en el
+ mismo.
+ Además, las lexías dentro de las estructuras resultantes han de seguir
+ un orden específico para su formación, el cual se encuentra establecido
+ y limitado entre sus diversas opciones.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Según la subclase de lexía semántica que actúe de núcleo en el sintagma,
+ estos son clasificables en las siguientes clases, acompañados con su definición
+ completa en notación Backus-Naur:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Sintagma adjetival
+\shape default
+.
+ Poseen un adjetivo como núcleo, y su estructura es la siguiente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{gather*}
+\bigl\langle\textsc{S.a.}\bigr\rangle\coloneqq\;\left\{ \bigl\langle\textsc{Preposición}\bigr\rangle\right\} \:\left[\bigl\langle\textsc{S.r.}\bigr\rangle\right]\;\left(\bigl\langle\textsc{Adjetivo}\bigr\rangle\;|\;\bigl\langle\textsc{Posesivo}\bigr\rangle\right)\;\left[\bigl\langle\textsc{S.n.}\bigr\rangle\;|\;\bigl\langle\textsc{C.}\bigr\rangle\right]
+\end{gather*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Sintagma adverbial
+\shape default
+.
+ Poseen un adverbio como núcleo, y su estructura es la siguiente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\bigl\langle\textsc{S.r.}\bigr\rangle\coloneqq & \;\left\{ \bigl\langle\textsc{Preposición}\bigr\rangle\right\} \:\left[\bigl\langle\textsc{Adverbio}\bigr\rangle\right]\;\bigl\langle\textsc{Adverbio}\bigr\rangle
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Sintagma nominal
+\shape default
+.
+ Poseen un sustantivo como núcleo, y su estructura es la siguiente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\bigl\langle\textsc{S.n.}\bigr\rangle\coloneqq & \;\left\{ \bigl\langle\textsc{Preposición}\bigr\rangle\right\} \:\left[\bigl\langle\textsc{Predeterminante}\bigr\rangle\right]\;\\
+ & \;\left(\left\{ \bigl\langle\textsc{Determinante}\bigr\rangle\right\} \;\left[\bigl\langle\textsc{S.a.}\bigr\rangle\right]\;\left[\bigl\langle\textsc{Sustantivo}\bigr\rangle\right]_{1}\;\left\{ \bigl\langle\textsc{S.a.}\bigr\rangle\;|\;\bigl\langle\textsc{S.n.}\bigr\rangle\;|\;\bigl\langle\textsc{C.}\bigr\rangle\right\} _{1}\right.\\
+| & \;\left.\left\{ \bigl\langle\textsc{Preposición}\bigr\rangle\right\} \:\left[\bigl\langle\textsc{Predeterminante}\bigr\rangle\right]\;\bigl\langle\textsc{Pronombre personal}\bigr\rangle\right)\\
+\bigl\langle\textsc{Predeterminante}\bigr\rangle\coloneqq & \;\textit{todo}\;|\;\textit{toda}\;|\;\textit{todos}\;|\;\textit{todas}\\
+\bigl\langle\textsc{Determinante}\bigr\rangle\coloneqq & \;\bigl\langle\textsc{Artículo}\bigr\rangle\;|\;\bigl\langle\textsc{Cuantificador}\bigr\rangle\;|\;\bigl\langle\textsc{Demostrativo}\bigr\rangle\;|\;\bigl\langle\textsc{Interrogativo}\bigr\rangle\\
+| & \;\bigl\langle\textsc{Numeral}\bigr\rangle\;|\;\bigl\langle\textsc{\textsc{Posesivo}}\bigr\rangle
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Sintagma verbal
+\shape default
+.
+ Poseen un verbo como núcleo, y su estructura es la siguiente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\bigl\langle\textsc{S.v.}\bigr\rangle\coloneqq & \;\left(\left[\bigl\langle\textsc{Deíctico paciente}\bigr\rangle\right]\:\left[\bigl\langle\textsc{Deíctico objeto}\bigr\rangle\right]\:\bigl\langle\textsc{V. (t. conjugable)}\bigr\rangle\right)\\
+| & \;\left(\bigl\langle\textsc{V. (t. no conjugable)}\bigr\rangle\:\left[\bigl\langle\textsc{Deíctico paciente}\bigr\rangle\right]\:\left[\bigl\langle\textsc{Deíctico objeto}\bigr\rangle\right]\right)\\
+\bigl\langle\textsc{Deíctico paciente}\bigr\rangle\coloneqq & \;\textit{me}\;|\;\textit{te}\;|\;\textit{le}\;|\;\textit{nos}\;|\;\textit{os}\;|\;\textit{les\;|\;\textit{se}}\\
+\bigl\langle\textsc{Deíctico objeto}\bigr\rangle\coloneqq & \;\textit{me}\;|\;\textit{te}\;|\;\textit{lo}\;|\;\textit{la}\;|\;\textit{nos}\;|\;\textit{os}\;|\;\textit{los}\;|\;\textit{las}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+La cláusula
+\end_layout
+
+\begin_layout Standard
+La cláusula es la unidad que agrupa múltiples sintagmas, entre ellos necesariame
+nte un sintagma verbal que actúe como núcleo, y forma una estructura completa
+ y de orden libre.
+ Esta tiene la función de expresar un evento, identificado con el núcleo,
+ opcionalmente aportando información contextual a partir del resto de sintagmas
+ presentes en la misma cláusula.
+ El enunciado, unidad máxima analizada por el modelo, es considerado también
+ una cláusula, y es la que engloba al resto de lexías del mismo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En contraste con el funcionamiento del núcleo en los sintagmas, en la cláusula,
+ el núcleo no es modificado por el resto de lexías o sintagmas presentes
+ dentro de la cláusula, sino que la agrupación de ambas presentan una unidad
+ sintáctica y semántica inmutable.
+ La razón, pues, de la existencia de un núcleo es para justificar la imposibilid
+ad de su omisión, a diferencia de el resto de lexías o sintagmas pertenecientes
+ a la misma cláusula.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Las lexías o sintagmas que no actúan como núcleo dentro de una cláusula
+ son denominados argumentos, y se pueden clasificar según su función en
+ las siguientes:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Agente
+\shape default
+.
+ Referencia al objeto que realiza el evento, al que se le denomina como
+ agente.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Circunstancial
+\shape default
+.
+ Añade contexto circunstancial y semántico sobre el estado del entorno de
+ realización del evento descrito por el núcleo de la cláusula.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Modificador
+\shape default
+.
+ Modifica de forma indirecta a uno de los tres objetos referenciables dentro
+ de la cláusula: el agente, el objeto o el paciente.
+ No se considera parte de la lexía o sintagma que describe a estos objetos
+ referenciables, pues pueden existir otros argumentos de la cláusula entre
+ ambos.
+ Aún así, se exige la misma concordancia que en los modificadores de una
+ lexía.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Objeto
+\shape default
+.
+ Referencia al objeto de relevancia en el evento, frecuentemente inanimado,
+ sobre el que no necesariamente recae el mismo evento.
+ A este, en el contexto de la cláusula, se le denomina como objeto.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Paciente
+\shape default
+.
+ Referencia al objeto sobre el que se realiza o recae el evento en cuestión,
+ razón por la que es denominado como paciente.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Según su posicionamiento relativo a la estructura del enunciado y su propia
+ estructura interna, las cláusulas son clasificables en las siguientes clases
+ y subclases, explicadas brevemente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Cláusulas principales
+\shape default
+.
+ Engloban al enunciado, conteniendo la totalidad de las lexías presentes
+ en él dentro de ella.
+ Se clasifican según la clase de enunciado resultante, que depende de la
+ intención general de este en el acto comunicativo:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\shape italic
+Cláusulas declarativas
+\shape default
+.
+ Poseen la intención de declarar la realización de un evento, ya sea en
+ el pasado, en el presente o como posibilidad o certeza en el futuro, o
+ como una realidad atemporal.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Cláusulas exclamativas
+\shape default
+.
+ Enfatizan alguna propiedad conocida de uno de los argumentos presentes
+ en la cláusula.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Cláusulas interrogativas
+\shape default
+.
+ Cuestionan la realización del evento en cuestión, o preguntan sobre las
+ propiedades de uno de los argumentos presentes en la cláusula.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Cláusulas imperativas
+\shape default
+.
+ Demandan la realización del mismo evento a un acusado que realiza la función
+ de agente dentro de la cláusula.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Cláusulas subordinadas
+\shape default
+.
+ Están contenidas dentro de la cláusula principal o de otra cláusula subordinada
+, y presentan un evento secundario ocurrente dentro de estas.
+ Además, son frecuentemente introducidas por ciertas lexías exclusivas para
+ este propósito, o por verbos en tiempos no conjugables.
+ Se clasifican en diversas clases, dependiendo de la forma en la que son
+ introducidas:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\shape italic
+Cláusulas adjuntas temporales
+\shape default
+.
+ Se introducen por una conjunción subordinante, y expresa una relación temporal
+ entre la cláusula que la contiene y esta, actuando siempre como argumento
+ de la cláusula.
+ El verbo que describe el evento de esta, en ocasiones, puede encontrarse
+ en un tiempo perteneciente al modo subjuntivo.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Cláusulas argumentales
+\shape default
+.
+ Siempre son introducidas por las conjunciones subordinantes 
+\begin_inset Quotes fld
+\end_inset
+
+que
+\begin_inset Quotes frd
+\end_inset
+
+ o 
+\begin_inset Quotes fld
+\end_inset
+
+si
+\begin_inset Quotes frd
+\end_inset
+
+, y actúan como un sustantivo o un sintagma nominal.
+ En las cláusulas argumentales comenzadas por la conjunción 
+\begin_inset Quotes fld
+\end_inset
+
+que
+\begin_inset Quotes frd
+\end_inset
+
+, el verbo que describe el evento de esta se encuentra necesariamente en
+ un tiempo perteneciente al modo subjuntivo.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Cláusulas de gerundio o participio
+\shape default
+.
+ Comienzan por un verbo en los tiempos no conjugables de gerundio o de participi
+o, y actúan exclusivamente como argumento de una cláusula.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Cláusulas de infinitivo
+\shape default
+.
+ Son introducidas, como su nombre indica, por un verbo en los tiempos no
+ conjugables de infinitivo, actuando como un sustantivo o un sintagma nominal.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Cláusulas relativas
+\shape default
+.
+ Se introducen por los mismos interrogativos que introducen a las cláusulas
+ interrogativas, denominados en este caso como relativos, sin embargo, actúan
+ como el argumento por el que se pregunta dentro de esta.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Coordinación
+\end_layout
+
+\begin_layout Standard
+La coordinación es el proceso por el cual se consigue la aglutinación horizontal
+ de una o más lexías, sintagmas o cláusulas en una única unidad, compartiendo
+ ciertas propiedades y rasgos.
+ Este proceso es frecuentemente utilizado para expresar las relaciones de
+ agrupación, oposición o selección exclusiva con las unidades que componen
+ la unidad resultante.
+ Se requiere para la realización del mismo que las unidades coordinadas
+ sean semejantes, es decir, se traten del mismo tipo de unidad y pertenezcan
+ a la misma clase y subclase.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Según la relación que se forma, identificable a partir de la conjunción
+ coordinante en uso, se clasifican en las siguientes clases:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Coordinación adversativa
+\shape default
+.
+ Opone a las unidades pertenecientes a esta.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Coordinación copulativa
+\shape default
+.
+ Agrupa varias unidades, actuando como su unión.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Coordinación disyuntiva
+\shape default
+.
+ Propone la selección exclusiva de una de las unidades.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Nivel semántico
+\end_layout
+
+\begin_layout Standard
+Finalmente, el nivel semántico es el último nivel detallado en el modelo,
+ al ser el encargado de analizar semánticamente el significado del enunciado
+ mediante la asignación de roles y la clasificación de los argumentos pertenecie
+ntes a las cláusulas del mismo.
+ Además, cumple la función de descartar ciertas estructuras jerárquicas
+ considerables como inválidas.
+ Para llevarlo a cabo, se introduce 
+\shape italic
+el rol semántico
+\shape default
+ como herramienta de marcado.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El rol semántico es una marca realizada a los argumentos de una cláusula
+ que especifica su función respecto al evento en cuestión, y el procedimiento
+ para su asignación depende particularmente del significado semántico del
+ verbo que marca el evento en cuestión.
+ Por lo tanto, para su asignación, se ha de utilizar una base de datos de
+ verbos, emparejados con las combinaciones posibles de roles semánticos
+ que se pueden dar, como, en el caso de la implementación posteriormente
+ mencionada del modelo, 
+\shape italic
+AncoraNet
+\shape default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "antonia_marti_ancora_2007"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Los roles semánticos reconocidos en este modelo, basándose en los presentes
+ en la base de datos utilizada para su validez y concordancia, son los siguiente
+s, acompañados cada uno con su abreviación técnica utilizada generalmente
+ en otras investigaciones:
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Lugar
+\shape default
+ (LOC).
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Extensión
+\shape default
+ (EXT).
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Conectiva del discurso
+\shape default
+ (DIS).
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Propósito general
+\shape default
+ (ADV).
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Marca de negación 
+\shape default
+(NEG).
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Verbo modal
+\shape default
+ (MOD).
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Causa
+\shape default
+ (CAU).
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Tiempo
+\shape default
+ (TMP).
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Propósito
+\shape default
+ (PNC).
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Modo
+\shape default
+ (MNR).
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Dirección
+\shape default
+ (DIR).
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Predicación secundaria
+\shape default
+ (PRD).
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sin embargo, debido a la subjetividad involucrada en el proceso de análisis
+ y asignación de roles semánticos, se ha decidido prestar mayor importancia
+ a la clasificación por funciones anteriormente descrita, pues, a diferencia
+ de los roles semánticos, son fácilmente asignables por medios algorítmicos
+ y rigurosos.
+ De esta manera, se justifica la falta de contenido en el apartado del nivel
+ semántico del modelo, siendo considerablemente menos extenso que el resto.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Aun así, en la posterior implementación del modelo, se redefinirá el apartado
+ correspondiente al nivel semántico para incluir, también, la asignación
+ de funciones a los argumentos presentes dentro de las cláusulas que componen
+ al enunciado.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Implementación del modelo
+\end_layout
+
+\begin_layout Standard
+El modelo anterior proporciona una visión determinista de la gramática del
+ español, que es de grata utilidad para la implementación de sistemas y
+ herramientas de análisis de enunciados.
+ Por lo tanto, se propone a continuación una implementación tipo de tal
+ sistema, explicando con detalle los algoritmos, las estructuras de datos
+ y los formatos utilizados para ello.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Al tratarse exclusivamente de un posible método para su implementación,
+ no se garantiza que el diseño de esta implementación sea óptimo, ya sea
+ en los ámbitos de utilización de memoria, complejidad de tiempo o carga
+ de datos.
+ Asimismo, la transpilación de lo presentado en este apartado a código,
+ presente en el repositorio de GitHub 
+\begin_inset Quotes fld
+\end_inset
+
+
+\bar under
+https://github.com/segfaultdev/grammar_es/
+\bar default
+
+\begin_inset Quotes frd
+\end_inset
+
+ junto con una copia de esta memoria, puede contener errores de funcionamiento
+ no diagnosticados, por lo que se ruega discreción a la hora de realizar
+ su lectura.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La implementación propuesta se divide en los mismos niveles que el modelo
+ utilizado y descrito en este trabajo de investigación, considerándolos
+ a continuación (son utilizados ciertos anglicismos para la denominación
+ de las partes del sistema, tomados de la jerga computacional y repetidos
+ a lo largo de este apartado, pues carecen de equivalente perfecto en el
+ español):
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Nivel léxico-morfológico
+\shape default
+.
+ Mediante un lexicalizador o 
+\begin_inset Quotes fld
+\end_inset
+
+lexer
+\begin_inset Quotes frd
+\end_inset
+
+, se lexicalizan los conjuntos de caracteres que componen el enunciado de
+ entrada, resultando en una o más descomposiciones del mismo en lexías perteneci
+entes al listado de lexías utilizado
+\shape italic
+.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Nivel sintáctico
+\shape default
+.
+ Un analizador o 
+\begin_inset Quotes fld
+\end_inset
+
+parser
+\begin_inset Quotes frd
+\end_inset
+
+ se encarga de transformar cada una de estas descomposiciones que recibe
+ como entrada en una o más jerarquías de lexías, sintagmas y cláusulas para
+ cada descomposición ingresada.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Nivel semántico
+\shape default
+.
+ Un etiquetador o 
+\begin_inset Quotes fld
+\end_inset
+
+tagger
+\begin_inset Quotes frd
+\end_inset
+
+ le asigna, para cada estructura obtenida, las funciones desenvueltas por
+ los argumentos de las cláusulas contenidas a estos mismos, utilizando para
+ ello un listado de las funciones correspondientes a cada verbo, y devolviendo
+ tras ello toda combinación válida de funciones.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename paper_01.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Esquema del sistema gramatical (preliminar).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Como resulta aparente en la organización del sistema implementado, cada
+ uno de los niveles va aumentando considerablemente el número de combinaciones
+ aceptadas como válidas.
+ Esto puede llegar a ser un considerable problema, especialmente cuando
+ el enunciado recibido posee múltiples interpretaciones o es excesivamente
+ extenso.
+ Además, algunas de las acepciones pueden resultar más o menos cercanas
+ al significado y la intención con los que originalmente se concibió el
+ enunciado, por lo que resultaría ideal la reducción de estas a un número
+ realisticamente manejable.
+ Se proponen, como posibles soluciones, las dos siguientes medidas, ambas
+ implementadas en el sistema tipo propuesto:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Filtrado de árboles
+\shape default
+.
+ Se modifica el 
+\begin_inset Quotes fld
+\end_inset
+
+parser
+\begin_inset Quotes frd
+\end_inset
+
+ para que, en ciertos estados intermedios de la creación de las diferentes
+ acepciones de posibles estructuras de árbol resultantes, utilice una serie
+ de filtros preestablecidos para la eliminación de árboles que, por razones
+ relacionadas con la forma estructural o la concordancia, son considerables
+ inválidos.
+ Este proceso consigue, en la práctica, reducir el número de árboles en
+ varios órdenes de magnitud.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Puntuado de árboles
+\shape default
+.
+ Al final de la cadena de niveles, se añade un puntuador de árboles, cuyo
+ propósito es utilizar ciertas reglas seleccionadas manualmente para poder
+ discernir acepciones según la posibilidad aproximada de coincidir con la
+ intención original.
+ Sin embargo, los criterios utilizados para la asignación de puntuaciones
+ son empíricos y subjetivos, por lo que, para evitar errores procedentes
+ de la selección de dichos criterios, no se descarta ningún árbol, limitándose
+ a la reordenación por puntuación.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename paper_02.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Esquema del sistema gramatical (final).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Herramientas en uso
+\end_layout
+
+\begin_layout Standard
+En la implementación tipo propuesta, se han utilizado diversas herramientas
+ específicas, con el fin de facilitar su diseño y programación.
+ Debido a la existencia de múltiples herramientas que permiten la creación
+ de sistemas gramaticales, se ha decidido utilizar las herramientas enumeradas
+ a continuación:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+C23 (GCC 13.2)
+\shape default
+.
+ El lenguaje de programación C, aun minimalista en la funcionalidad incluida
+ por defecto, tanto en la librería estándar como en la sintaxis del lenguaje,
+ otorga una elevada eficiencia, al ser un lenguaje compilado y de bajo nivel.
+ Desde su introducción en 1972, ha marcado un antes y un después en el ámbito
+ de la computación, aunque la versión utilizada para la implementación,
+ C23, se encuentra en la etapa final previa a su publicación, por lo que
+ es considerable un lenguaje moderno.
+ Este ha sido utilizado para la programación del sistema gramatical, situado
+ en el 
+\begin_inset Quotes fld
+\end_inset
+
+backend
+\begin_inset Quotes frd
+\end_inset
+
+ de la plataforma de análisis resultante.
+ Además, es el lenguaje de preferencia de los autores intelectuales del
+ trabajo de investigación.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+HTML5
+\shape default
+ y 
+\shape italic
+CSS2
+\shape default
+.
+ Estos dos lenguajes de marcado y estilizado, respectivamente, han hecho
+ la construcción de una interfaz gráfica atractiva y accesible al público
+ general mediante el dominio web asignado, por lo que han sido utilizados
+ para la programación del 
+\begin_inset Quotes fld
+\end_inset
+
+frontend
+\begin_inset Quotes frd
+\end_inset
+
+ de la plataforma de análisis resultante.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+HTMX (v1.19.10)
+\shape default
+.
+ La librería HTMX permite la creación de interfaces gráficas interactivas
+ y ligeras, accesibles por medio de una página web.
+ En este caso, ha sido utilizada para la conexión entre la interfaz accesible
+ al público, escrita en HTML5 y CSS2, y el sistema gramatical, escrito en
+ C23, permitiendo la solicitud de análisis de enunciados en tiempo real.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Nivel léxico-morfológico
+\end_layout
+
+\begin_layout Standard
+El nivel léxico-morfológico es el encargado de producir como resultado,
+ dado un enunciado en forma de cadena de caracteres, todas las acepciones
+ posibles de divisiones de dichos caracteres en diferentes lexías, según
+ un listado de lexías.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En este caso, se ha utilizado la tabla de frecuencias de elementos gramaticales
+ disponible en la página web del Corpus del español del siglo XXI 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "real_academia_espanola_rae_corpus_2023"
+literal "false"
+
+\end_inset
+
+, pues consigue aportar un extenso y completo listado de las lexías presentes
+ en el español, incluyendo 2.554.444 lexías distintas.
+ Además, la misma tabla de frecuencias aporta un análisis morfológico exhaustivo
+ para cada una de las lexías presentes, clasificándolas en las subclases
+ existentes y mencionadas en el modelo, y otorga valores para la gran mayoría
+ de rasgos correspondientes a cada una de las subclases.
+ De esta forma, se tiene una única fuente centralizada y verificada de lexías,
+ que luego es procesada y filtrada hasta convertirla al formato requerido
+ en el sistema gramatical.
+\end_layout
+
+\begin_layout Subsection
+Rasgos gramaticales
+\end_layout
+
+\begin_layout Standard
+Se crea una estructura, denominada 
+\family typewriter
+trait_t
+\family default
+, que alberga las propiedades de un rasgo gramatical específico, conteniendo
+ su nombre (
+\family typewriter
+name
+\family default
+), un conjunto con los valores que posee (
+\family typewriter
+values
+\family default
+) y la cantidad de dichos valores (
+\family typewriter
+value_count
+\family default
+), siendo esta más de uno exclusivamente en el caso de los rasgos polivalentes.
+ Tanto el nombre como los valores son guardados en el formato UTF-8.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},showstringspaces=false,tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+typedef struct trait_t trait_t;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct trait_t {
+\end_layout
+
+\begin_layout Plain Layout
+
+	const char8_t *name;
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+	const char8_t *values;
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t value_count;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Lexías
+\end_layout
+
+\begin_layout Standard
+Se crea una estructura, denominada 
+\family typewriter
+word_t
+\family default
+, que almacena las propiedades de una lexía específico, conteniendo su nombre
+ (
+\family typewriter
+name
+\family default
+), un conjunto con los rasgos gramaticales que posee (
+\family typewriter
+traits
+\family default
+) y la cantidad de dichos rasgos gramaticales (
+\family typewriter
+trait_count
+\family default
+).
+ El nombre de la lexía corresponde con su descomposición por caracteres,
+ donde todas las letras alfabéticas se encuentran en minúsculas, salvo la
+ primera que, si se trata de un sustantivo propio, se puede encontrar en
+ mayúscula.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Además, se crea un conjunto global de todas las lexías presentes en el listado
+ que se encuentre en uso (
+\family typewriter
+words
+\family default
+), acompañado de la cantidad de dichas lexías (
+\family typewriter
+word_count
+\family default
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},showstringspaces=false,tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+typedef struct word_t word_t;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct word_t {
+\end_layout
+
+\begin_layout Plain Layout
+
+	const char8_t *name;
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+	const trait_t *traits;
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t trait_count;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*	Global	*/
+\end_layout
+
+\begin_layout Plain Layout
+
+word_t *words = NULL;
+\end_layout
+
+\begin_layout Plain Layout
+
+size_t word_count = 0;
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Árboles de prefijos
+\end_layout
+
+\begin_layout Standard
+Los árboles de prefijos son estructuras de datos utilizadas para almacenar
+ un conjunto de cadenas de caracteres que poseen ciertos prefijos en común
+ entre sí.
+ Esto se consigue mediante utilización de nodos que, salvo el nodo padre,
+ almacenan un caracter, y que poseen una arista saliente para cada caracter
+ que podría continuar al anterior.
+ Esto significa que cada ruta que se puede trazar desde el nodo padre hasta
+ un nodo terminal, nodo que se encuentra marcado como el final de una cadena
+ de caracteres, representa a una cadena de caracteres distinta.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename paper_03.png
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ejemplo de árbol de prefijos, para las cadenas 
+\begin_inset Quotes fld
+\end_inset
+
+car
+\begin_inset Quotes frd
+\end_inset
+
+, 
+\begin_inset Quotes fld
+\end_inset
+
+card
+\begin_inset Quotes frd
+\end_inset
+
+, 
+\begin_inset Quotes fld
+\end_inset
+
+care
+\begin_inset Quotes frd
+\end_inset
+
+, 
+\begin_inset Quotes fld
+\end_inset
+
+carry
+\begin_inset Quotes frd
+\end_inset
+
+, 
+\begin_inset Quotes fld
+\end_inset
+
+cat
+\begin_inset Quotes frd
+\end_inset
+
+, 
+\begin_inset Quotes fld
+\end_inset
+
+do
+\begin_inset Quotes frd
+\end_inset
+
+ y 
+\begin_inset Quotes fld
+\end_inset
+
+dog
+\begin_inset Quotes frd
+\end_inset
+
+.
+ El nodo verde es el nodo padre y los nodos amarillos son nodos terminales.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para la simplificación de las estructuras almacenadas en cada nodo, es frecuente
+ trazar aristas únicamente a uno de los nodos y unir el resto a este mediante
+ una cadena de aristas, conectando cada uno con su siguiente.
+ Esto permite que cada nodo tenga, como máximo, dos aristas: una que apunta
+ hacia un nodo hijo, y otra que apunta hacia un nodo hermano.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La razón por la que los árboles de prefijos son utilizados en el sistema
+ gramatical presentado es porque permiten la división de caracteres en cadenas
+ en complejidad de tiempo lineal, es decir, que depende exclusivamente del
+ número de caracteres que se solicite dividir, y no del número de lexías
+ presentes en el listado de lexías utilizado para la creación del árbol
+ de lexías.
+ Por otro lado, facilitan considerablemente la compleja tarea de explorar
+ todas las combinaciones de divisiones posibles, pues se vuelve una tarea
+ relativamente simple al realizarse recursivamente sobre una estructura
+ de árbol.
+ La única desventaja aparente es el elevado tiempo necesitado para la creación
+ del mismo, aunque este se puede realizar una única vez, almacenándolo para
+ evitar su repetida generación.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Estos presentan, sin embargo, un significativo problema al utilizarlos para
+ la división de caracteres en lexías: existen cadenas de caracteres que
+ representan a más de una lexía, por lo que se tiene que encontrar alguna
+ forma de discernir estas lexías entre sí.
+ Para ello, se propone almacenar en cada nodo terminal todas las lexías
+ que resultan de la cadena formada por la ruta entre dicho nodo y el nodo
+ padre.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se crea una estructura, denominada 
+\family typewriter
+prefix_t
+\family default
+, que almacena las propiedades de una nodo específico, conteniendo el caracter
+ que representa (
+\family typewriter
+data
+\family default
+), un conjunto con los índices de las lexías que son representadas por la
+ ruta del nodo padre al nodo en cuestión (
+\family typewriter
+indexes
+\family default
+), la cantidad de dichos índices (
+\family typewriter
+index_count
+\family default
+), el índice del nodo hermano (
+\family typewriter
+sibling
+\family default
+), o cualquier número negativo de no existir tal nodo, y el índice del nodo
+ hijo (
+\family typewriter
+child
+\family default
+), o cualquier número negativo de no existir tal nodo.
+ Los caracteres en las rutas para cada lexía han de corresponder con los
+ presentes en el nombre de la misma lexía.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Además, se crea un conjunto global de todos los nodos presentes en el árbol
+ de prefijos formado (
+\family typewriter
+prefixes
+\family default
+), acompañado de la cantidad de dichos nodos (
+\family typewriter
+prefix_count
+\family default
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C,basicstyle={\ttfamily},showstringspaces=false,tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+typedef struct prefix_t prefix_t;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct prefix_t {
+\end_layout
+
+\begin_layout Plain Layout
+
+	char8_t data;
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t *indexes;
+\end_layout
+
+\begin_layout Plain Layout
+
+	size_t index_count;
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+	ssize_t sibling, child;
+\end_layout
+
+\begin_layout Plain Layout
+
+};
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+/*	Global	*/
+\end_layout
+
+\begin_layout Plain Layout
+
+prefix_t *prefixes = NULL;
+\end_layout
+
+\begin_layout Plain Layout
+
+prefix_t prefix_count = 0;
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Nivel sintáctico
+\end_layout
+
+\begin_layout Standard
+El nivel sintáctico es el encargado, para cada división resultante del lexicaliz
+ador, de hallar las estructuras de jerarquías y coordinaciones de lexías,
+ sintagmas y cláusulas, denominadas árboles, que se pueden formar a partir
+ de las lexías recibidas como entrada al analizador.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se ha utilizado con este fin las formas en las que se encuentran definidos
+ los sintagmas y las cláusulas, utilizando la notación de Backus-Naur.
+ Esta, aunque normalmente es utilizada para definir gramáticas no ambiguas,
+ ha demostrado a lo largo del trabajo de investigación su eficacia para
+ la definición de cualquier gramática libre de contexto.
+ Al ser así, el analizador únicamente ha de utilizar estas definiciones
+ para intentar encajar cada lexía dentro del árbol resultante.
+ En el caso de las cláusulas, de hecho, no es necesario ninguna forma que
+ las defina, pues los argumentos y el núcleo presentes en ella pueden encontrars
+e, en principio, en cualquier orden.
+\end_layout
+
+\begin_layout Subsection
+Analizador de descenso recursivo
+\end_layout
+
+\begin_layout Standard
+Un analizador de descenso recursivo (
+\shape italic
+Recursive descent parser
+\shape default
+, en inglés) es un tipo de analizador gramatical utilizado para transformar
+ entradas lineales, en este caso compuestas de lexías, en árboles, conforme
+ a una gramática libre de contexto.
+ Generalmente, estos analizadores se programan de tal forma que actúan como
+ analizadores 
+\begin_inset Quotes fld
+\end_inset
+
+zurdos
+\begin_inset Quotes frd
+\end_inset
+
+, es decir, que priorizan los árboles cuyo desbalance se encuentra a la
+ izquierda.
+ Sin embargo, al tratarse el modelo propuesto en el trabajo de investigación
+ de una gramática ambigua, este es modificado para poder producir más de
+ un árbol como resultado.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Estos analizadores utilizan como base rutinas separadas para cada forma
+ posible, que llaman recursivamente a otras, integrando progresivamente
+ unidades procedentes de la entrada al árbol resultante y retrocediendo
+ cuando una forma es determinada inválida a lo largo de este proceso, hasta
+ poder continuar con en análisis.
+ En el caso de la versión modificada, sin embargo, se procede con dicho
+ retroceso incluso si la generación del árbol es exitosa, con el fin de
+ poder hallar todos los árboles que cumplen con las formas preestablecidas
+ en el modelo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename paper_04.png
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Diagrama de recursión en el sistema gramatical.
+ Los vértices verdes son rutinas externas, los vértices azules son rutinas
+ internas y los vértices amarillos son subclases de lexías.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La razón por la que se ha decidido utilizar un analizador de descenso recursivo
+ es por su alta eficiencia combinada con la facilidad presentada para su
+ implementación, pues esta consiste en una traducción de la notación Backus-Naur
+ que describe la gramática libre de contexto a llamadas recursivas de rutinas,
+ que son creadas para cada vértice en el diagrama de recursión del sistema
+ gramatical.
+\end_layout
+
+\begin_layout Subsection
+Filtro de árboles
+\end_layout
+
+\begin_layout Standard
+A lo largo del proceso de generación de todas las acepciones de árboles
+ en el analizador, se pueden llegar a producir cantidades excesivas de árboles,
+ siendo muchos de ellos inválidos tras un rápido filtrado.
+ Por lo tanto, tras cada rutina del diagrama, se introduce un filtro de
+ árboles.
+ Este consigue reducir en varios órdenes de magnitud el número de árboles
+ resultantes, acelerando masivamente el sistema gramatical, reduciendo su
+ consumo de memoria y permitiendo, pues, el análisis de enunciados de mayor
+ longitud.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El analizador, por sí solo, aumenta en cada recursión el número de árboles
+ de forma recursiva, razón por la que es necesario este filtro.
+ Esto ocurre debido a la intencional simplicidad del mismo, pues, para conseguir
+ un sistema breve y autoexplicativo, se ha decidido utilizar únicamente
+ la clase y subclase de las lexías analizadas para la creación preliminar
+ de los árboles, previos al filtrado y, en el nivel semántico, etiquetado.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Las medidas utilizadas para el filtrado eficaz de árboles se encuentran
+ enumeradas a continuación, junto a una breve descripción de las mismas:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Discordancia de rasgos
+\shape default
+.
+ En muchos árboles, algunos rasgos que requieren de concordancia, como el
+ género, el número y la persona, pueden no poseer valores equivalentes,
+ resultando en relaciones inválidas, por lo que estos árboles son descartados.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Repetición de árboles
+\shape default
+.
+ Existe más de una ruta que puede resultar diversos árboles con la misma
+ forma, incluyendo únicamente variaciones ligeras en los rasgos gramaticales
+ o, incluso, no variando de ninguna manera, por lo que pueden ser reducidos
+ a un único árbol.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Formas degeneradas
+\shape default
+.
+ En las formas donde varias reglas son opcionales, puede darse el caso donde
+ se produzca una omisión o una inclusión excesiva de reglas presentes en
+ la forma, resultando en formas que no cumplen en su totalidad las reglas
+ definidas en el modelo, por lo que los árboles correspondientes se eliminan.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Nivel semántico
+\end_layout
+
+\begin_layout Standard
+El nivel semántico es el encargado, para cada acepción procedente del analizador
+ del nivel sintáctico, de asignar las funciones de los argumentos dentro
+ de las cláusulas y de algunos sintagmas, además de corregir y reducir algunos
+ rasgos presentes en ciertas lexías y sintagmas.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+El listado de verbos procedente del corpus 
+\shape italic
+AnCora
+\shape default
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "antonia_marti_ancora_2007"
+literal "false"
+
+\end_inset
+
+ proporciona algo menos de 3.000 verbos distintos en español, junto a las
+ distintas funciones que estos aceptan cuando se encuentran como núcleo
+ de una cláusula.
+ Además, se dispone de la forma necesaria de los argumentos para la asignación
+ de cada función posible, junto a las funciones que un argumento puede desempeña
+r, extraído previamente a partir de los árboles generados.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Con todo estos recursos, en el sistema gramatical, se utilizan métodos de
+ selección combinatorios y de 
+\begin_inset Quotes fld
+\end_inset
+
+backtracking
+\begin_inset Quotes frd
+\end_inset
+
+ para la asignación de estas funciones, asignándolas de cualquier forma
+ arbitraria hasta llegar a un argumento al que no se le puede asignar ninguna
+ función, o hasta completar la asignación de funciones, donde se retrocede
+ para seguir comprobando el resto de asignaciones válidas.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+De esta manera, para cada árbol originario del analizador de descenso recursivo,
+ se crean varias copias, cada una con una asignación válida de funciones
+ distinta.
+ A su vez, si algún árbol procedente del analizador no posee ninguna asignación
+ válida de funciones, es descartado.
+ Finalmente, rasgos como la función, el rol semántico y otros rasgos polivalente
+s son finalmente separados en las distintas combinaciones de valores que
+ pueden resultar.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Puntuador de árboles 
+\end_layout
+
+\begin_layout Standard
+Finalmente, previo a la salida de los árboles generados al exterior del
+ sistema, estos son puntuados mediante diversos criterios, seleccionados
+ manualmente para la minimización del error del sistema gramatical a la
+ hora de analizar diversos enunciados.
+ Tras ser puntuados, se ordenan según la puntuación, y se expulsan del sistema.
+ La puntuación asignada corresponde, de manera aproximada, con la inversa
+ de la probabilidad de su aparición de forma natural, asignando menores
+ puntuaciones a árboles más naturales.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Es importante tener en cuenta, sin embargo, que este último paso no descarta
+ ningún árbol, ni selecciona un subconjunto de estos árboles para su salida
+ tras la ordenación por puntuación, sino que se limita a devolverlos en
+ el orden generado.
+ Se ha decidido realizar el proceso de esta manera para evitar el descarte
+ de acepciones válidas que, por alguna imprecisión al calcular su puntuación,
+ han sido valoradas con una puntuación más elevada que la esperada.
+ De la misma forma, estos mismos errores pueden provocar la aparición de
+ árboles inválidos con puntuaciones menores que las deseadas.
+ Esto está destinado a ocurrir eventualmente, pues los criterios seleccionados
+ se eligieron de forma empírica y subjetiva, pero por medio de la intensiva
+ comprobación del sistema gramatical se ha pretendido mitigar lo mejor posible.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cada criterio otorga una puntuación decimal, con el 
+\begin_inset Formula $i$
+\end_inset
+
+-ésimo criterio asignando la puntuación 
+\begin_inset Formula $1\leq x_{i}\leq+\infty$
+\end_inset
+
+.
+ La fórmula para calcular la puntuación total de un árbol, siendo 
+\begin_inset Formula $n$
+\end_inset
+
+ el número de criterios presentes, es la siguiente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{gather*}
+X=\prod_{i=1}^{n}x_{i}=x_{1}\cdot x_{2}\cdot x_{3}\cdot\ldots\cdot x_{n}
+\end{gather*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La cantidad de criterios utilizados en la implementación del modelo excede
+ la cantidad descriptible en el trabajo de investigación, además de que
+ su descripción se encuentra fuera del alcance del mismo, por lo que se
+ proporcionan las ideas detrás de los dos criterios utilizados de mayor
+ relevancia:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Frecuencia de acepciones de lexías homólogas y rasgos polivalentes
+\shape default
+.
+ Según la frecuencia registrada en el listado de lexías para cada acepción
+ de las lexías homólogas presentes en el enunciado, se puede conseguir priorizar
+ usos más frecuentes de ciertas lexías sobre usos escasamente registrados.
+ Además, según los valores finalmente utilizados para rasgos considerados
+ polivalentes tras el último nivel del sistema, ciertos árboles se pueden
+ considerar más naturales que otros.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Horizontalidad de los modificadores de lexías
+\shape default
+.
+ Debido al considerable esfuerzo mental que un ser humano ha de realizar
+ para preservar con exactitud información contextual del enunciado sin recurrir
+ a las múltiples repeticiones del mismo, es considerablemente más frecuente
+ ver cadenas de modificadores de lexías y sintagmas, donde cada uno modifica
+ al anterior, que múltiples modificadores afectando a una única lexía o
+ a un único sintagma.
+ Por lo tanto, se puede utilizar como criterio de puntuación la longitud
+ de los modificadores que han de ser recordados como contexto, es decir,
+ que se encuentren sucedidos por otros que afecten a la misma unidad gramatical.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Epílogo
+\end_layout
+
+\begin_layout Section
+Conclusiones
+\end_layout
+
+\begin_layout Standard
+Con este trabajo de investigación se pretendía diseñar un modelo adaptado
+ de la gramática española que se fundamentase en una visión más determinista
+ y matemáticamente rigurosa, dejando a un lado cualquier interpretación
+ del significado más allá del extraíble de forma objetiva mediante un análisis
+ semántico donde se contraste las formas encontradas con las existentes
+ en listados.
+ Además, se buscaba que este modelo fuera lo más cercano con la sintaxis
+ completa del español, minimizando de toda manera posible los casos donde
+ este modelo no consiguiera definir de forma exacta la jerarquía y coordinación
+ que se presencia dentro del enunciado analizado.
+ Sin embargo, se tomó la natural decisión de limitar el alcance al enunciado,
+ omitiendo cualquier análisis textual en el trabajo de investigación, pues
+ escalaría considerablemente la complejidad del mismo, al ser un apartado
+ de la gramática que, tradicionalmente, ha requerido de una mayor subjetividad
+ a la hora de su análisis.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Por otro lado, se propuso como objetivo secundario la creación de una herramient
+a de uso fácil e inmediato para el análisis de estos mismos enunciados,
+ u oraciones, de tal manera que fuera disponible de forma totalmente gratuita
+ al público mediante una interfaz interactiva en una página web, además
+ de construir un sistema gramatical interno y modular que funcionase como
+ traducción directa del modelo descrito en el trabajo de investigación,
+ generando estos análisis no solo para la herramienta web, sino como sistema
+ implementable dentro de otros programas y servicios.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Estas dos metas principales del trabajo resultan ser considerablemente ambiciosa
+s, pues son exclusivamente beneficiosas para la sociedad, permitiendo innovacion
+es en los ámbitos de educación, tecnología y legislación, entre otros.
+ Se declara, así, que el trabajo no presenta riesgo ético alguno, pues campos
+ como la lingüística computacional no se encuentran directamente ligados
+ a temas controversiales éticos.
+ Además, este trabajo de investigación puede considerarse una sólida base
+ para futuras expansiones e investigaciones sobre el tema de los modelos
+ deterministas, proporcionando un mayor rigor y una mayor fiabilidad, en
+ comparativa con la gran mayoría de aproximaciones actualmente disponibles
+ al público, tanto libres como comerciales.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se ha de decir, con todo ello en cuenta, que se han logrado todos los objetivos
+ propuestos con éxito, consiguiendo crear un modelo determinista y riguroso
+ de los apartados de relevancia de la gramática del español.
+ Esto se ha conseguido, adicionalmente, de una forma que resulte accesible
+ y comprensible por tanto lingüistas, como programadores, como investigadores
+ interesados.
+ Por otro lado, se ha conseguido implementar una herramienta funcional y
+ de fácil manejo que se encuentra disponible en la siguiente dirección:
+ 
+\begin_inset Quotes fld
+\end_inset
+
+
+\bar under
+https://segsy.dev/mage
+\bar default
+
+\begin_inset Quotes frd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para la sorpresa de los autores del trabajo de investigación, la herramienta
+ ha demostrado ser capaz de realizar análisis a tiempo real de oraciones
+ de alrededor de 20 palabras sin error alguno y, en general, muestra una
+ tasa de funcionamiento considerablemente elevada, proporcionando el análisis
+ correcto en las 3 primeras opciones en la gran mayoría de pruebas cerradas
+ realizadas.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Aun así, se considera que el trabajo podría ser mejorado o extendido en
+ ciertas áreas que, por falta de recursos, no se han podido tratar en el
+ trabajo de investigación:
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+La realización de análisis textuales
+\shape default
+, tanto de la estructura textual como de la semántica involucrada, realizando
+ automáticamente la división por enunciados.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+La optimización del sistema gramatical
+\shape default
+ para el procesado de enunciados de mayor longitud sin demoras excesivamente
+ extensas.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+La búsqueda de mejores criterios de puntuación
+\shape default
+, pues es el único área donde se carece de respaldo alguno, más allá de
+ una breve experimentación paramétrica privada.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En retrospectiva de lo dicho en esta sección y a lo largo del trabajo de
+ investigación, se concluye dando por completo el trabajo de investigación,
+ siendo este un 
+\begin_inset Quotes fld
+\end_inset
+
+éxito rotundo
+\begin_inset Quotes frd
+\end_inset
+
+, pues se han conseguido con creces todos los objetivos propuestos en este
+ de forma detallada y respaldada con diversas fuentes involucradas en el
+ campo de la lingüística, especialmente pertenecientes a las corrientes
+ generativistas.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintAll"
+bibfiles "paper"
+options "bibtotoc,apalike2"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
