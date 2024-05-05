@@ -4,7 +4,7 @@
 \begin_header
 \save_transient_properties true
 \origin unavailable
-\textclass article
+\textclass paper
 \begin_preamble
 \usepackage{xcolor}
 \usepackage{caption}
@@ -5943,14 +5943,63 @@ bigskip
 Estas dos metas principales del trabajo resultan ser considerablemente ambiciosa
 s, pues son exclusivamente beneficiosas para la sociedad, permitiendo innovacion
 es en los ámbitos de educación, tecnología y legislación, entre otros.
- Se declara, así, que el trabajo no presenta riesgo ético alguno, pues campos
- como la lingüística computacional no se encuentran directamente ligados
- a temas controversiales éticos.
- Además, este trabajo de investigación puede considerarse una sólida base
+ Por ende, este trabajo de investigación puede considerarse una sólida base
  para futuras expansiones e investigaciones sobre el tema de los modelos
  deterministas, proporcionando un mayor rigor y una mayor fiabilidad, en
  comparativa con la gran mayoría de aproximaciones actualmente disponibles
  al público, tanto libres como comerciales.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+bigskip
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sin embargo, durante la realización del trabajo de investigación, se ha
+ realizado una reflexión sobre las consideraciones éticas a tener en cuenta,
+ siendo los dos aspectos más problemáticos los siguientes:
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+La utilización de los datos del usuario para la mejora del sistema
+\shape default
+.
+ Esta opción fue planteada desde el comienzo del trabajo de investigación,
+ con claros planes de su materialización y fragmentos de código escritos
+ y verificados.
+ A pesar de ello, previo a la redacción del sistema en el trabajo de investigaci
+ón y la publicación del código fuente, se optó por desechar los mecanismos
+ propuestos para ello, pues no se consideró que tuviera los beneficios suficient
+es como para considerarse una opción factible.
+ De esta manera, la implementación del sistema carece, en su totalidad,
+ de protocolos de telemetría y recolección de datos.
+\end_layout
+
+\begin_layout Itemize
+La integración del modelo y el sistema en modelos de inteligencia artificial
+ con intenciones maliciosas.
+ Es cierto que, al publicar este trabajo de investigación, se puede dar
+ el caso en el que se utilice la información recopilada en este trabajo
+ con el fin de producir modelos de inteligencia artificial para fines como
+ la suplantación de identidad.
+ En este caso, se ha optado por marcar como irrelevante este aspecto, pues
+ las implicaciones directas del trabajo no son lo suficientemente significativas
+ como para justificar la toma de medidas al respecto, además de que este
+ trabajo afecta positivamente a la rama de estudio de la lingüística.
 \end_layout
 
 \begin_layout Standard
@@ -5977,20 +6026,21 @@ Se ha de decir, con todo ello en cuenta, que se han logrado todos los objetivos
  y comprensible por tanto lingüistas, como programadores, como investigadores
  interesados.
  Por otro lado, se ha conseguido implementar una herramienta funcional y
- de fácil manejo que se encuentra disponible en la siguiente dirección:
+ de fácil manejo, cuyo código fuente se encuentra disponible en la dirección
  
 \begin_inset Quotes fld
 \end_inset
 
 
 \bar under
-https://segsy.dev/mage
+https://github.com/segfaultdev/grammar_es
 \bar default
 
 \begin_inset Quotes frd
 \end_inset
 
-.
+, con el fin de ser analizado, verificado y alojado en un servidor por el
+ lector.
 \end_layout
 
 \begin_layout Standard
@@ -6010,12 +6060,17 @@ bigskip
 \end_layout
 
 \begin_layout Standard
-Para la sorpresa de los autores del trabajo de investigación, la herramienta
- ha demostrado ser capaz de realizar análisis a tiempo real de oraciones
- de alrededor de 20 palabras sin error alguno y, en general, muestra una
- tasa de funcionamiento considerablemente elevada, proporcionando el análisis
- correcto en las 3 primeras opciones en la gran mayoría de pruebas cerradas
- realizadas.
+Como logro recalcable, además, la herramienta ha demostrado ser capaz de
+ realizar análisis a tiempo real de oraciones de alrededor de 20 palabras
+ sin error alguno y, en general, muestra una tasa de funcionamiento considerable
+mente elevada, proporcionando el análisis correcto en las 3 primeras opciones
+ en la gran mayoría de pruebas cerradas realizadas.
+ Estas observaciones, aun subjetivas, se han obtenido mediante el análisis
+ de un listado privado de enunciados de selección propia, cuya proveniencia
+ se limita a fragmentos literarios del siglo XX.
+ Se propone, como posible mejora, realizar un estudio cuantitativo y exhaustivo
+ de la tasa de funcionamiento del sistema, pues no ha resultado posible
+ dentro de los limitados recursos disponibles.
 \end_layout
 
 \begin_layout Standard
@@ -6047,6 +6102,25 @@ La realización de análisis textuales
 \shape default
 , tanto de la estructura textual como de la semántica involucrada, realizando
  automáticamente la división por enunciados.
+ Sería de relevancia, además, la realización de análisis de las propiedades
+ textuales de 
+\shape italic
+adecuación
+\shape default
+, 
+\shape italic
+coherencia
+\shape default
+ y 
+\shape italic
+cohesión
+\shape default
+, dentro de lo posible con un modelo determinista.
+ Para ello, se tendría que expandir el modelo propuesto en este trabajo,
+ junto al sistema algorítmico que lo implementa.
+ La detección de vínculos deícticos en el texto, por otro lado, abriría
+ puertas a su utilización en asistentes virtuales, proporcionando mejoras
+ destacables.
 \end_layout
 
 \begin_layout Itemize
@@ -6056,6 +6130,14 @@ La optimización del sistema gramatical
 \shape default
  para el procesado de enunciados de mayor longitud sin demoras excesivamente
  extensas.
+ En su actual versión, para garantizar el análisis válido y eficaz del enunciado
+, se ha optado por comprobar todas las descomposiciones léxicas posibles
+ y, para cada una de ellas, todos los árboles posibles.
+ Esto provoca que la herramienta requiera de un elevado tiempo de computación,
+ además de altos requisitos de memoria.
+ Es por ello por lo que se propone utilizar, en un futuro, algoritmos voraces
+ para la aproximación óptima del análisis sin requerir de dichos requisitos
+ temporales y de almacenamiento.
 \end_layout
 
 \begin_layout Itemize
@@ -6063,8 +6145,13 @@ La optimización del sistema gramatical
 \shape italic
 La búsqueda de mejores criterios de puntuación
 \shape default
-, pues es el único área donde se carece de respaldo alguno, más allá de
- una breve experimentación paramétrica privada.
+, pues es una de las selectas áreas donde se carece de respaldo alguno,
+ más allá de una breve experimentación paramétrica privada.
+ Los dos posibles enfoques a llevar a cabo serían un enfoque empírico o
+ de optimización, donde se ajustasen valores, ya sea de forma manual o automátic
+a, hasta maximizar la tasa de funcionamiento; o un enfoque teórico, donde
+ se expandiese el modelo propuesto para incluir criterios extrapolados directame
+nte de la gramática española para la puntuación de enunciados.
 \end_layout
 
 \begin_layout Standard
